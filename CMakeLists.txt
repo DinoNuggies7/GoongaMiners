@@ -8,8 +8,8 @@ else()
 endif()
 
 # This can be read from ${PROJECT_NAME} after project() is called
-project(minetest)
-set(PROJECT_NAME_CAPITALIZED "Minetest")
+project(GoongaMiners)
+set(PROJECT_NAME_CAPITALIZED "GoongaMiners")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -247,15 +247,7 @@ if(RUN_IN_PLACE)
 	install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/textures/texture_packs_here.txt" DESTINATION "${SHAREDIR}/textures")
 endif()
 
-install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/games/minetest_game" DESTINATION "${SHAREDIR}/games/"
-	COMPONENT "SUBGAME_MINETEST_GAME" OPTIONAL PATTERN ".git*" EXCLUDE )
-
 set(INSTALL_DEVTEST FALSE CACHE BOOL "Install Development Test")
-
-if(INSTALL_DEVTEST)
-	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/games/devtest" DESTINATION "${SHAREDIR}/games/"
-		PATTERN ".git*" EXCLUDE )
-endif()
 
 if(BUILD_CLIENT)
 	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/client/shaders" DESTINATION "${SHAREDIR}/client")
@@ -322,8 +314,8 @@ cpack_add_component(Docs
 )
 
 cpack_add_component(SUBGAME_MINETEST_GAME
-	DISPLAY_NAME "Minetest Game"
-	DESCRIPTION "The default game bundled in the Minetest engine. Mainly used as a modding base."
+	DISPLAY_NAME "GoongaMiners"
+	DESCRIPTION "I like throwing axes at midgets :)"
 	GROUP "Games"
 )
 

@@ -48,6 +48,7 @@ AppDir
 /bin/
 /games/*
 !/games/GoongaGame/
+!/games/GoongaGame/*
 /cache
 /textures/*
 !/textures/base/
