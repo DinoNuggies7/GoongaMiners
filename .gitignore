@@ -47,9 +47,7 @@ AppDir
 ## Non-static Minetest directories or symlinks to these
 /bin/
 /games/*
-!/games/devtest/
-/games/devtest/mods/soundstuff/sounds/gitignored_sounds/*
-!/games/devtest/mods/soundstuff/sounds/gitignored_sounds/custom_sounds_here.txt
+!/games/GoongaGame/
 /cache
 /textures/*
 !/textures/base/

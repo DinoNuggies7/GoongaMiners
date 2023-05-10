@@ -1,0 +1,14 @@
+# textdomain: mcl_skins
+Skins=
+Templates=
+Arm size=
+Bases=
+Footwears=
+Eyes=
+Mouths=
+Bottoms=
+Tops=
+Hairs=
+Headwears=
+Open skin configuration screen.=
+Select=

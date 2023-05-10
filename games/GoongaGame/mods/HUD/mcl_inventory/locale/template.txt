@@ -1,0 +1,21 @@
+# textdomain: mcl_inventory
+Recipe book=
+Help=
+Select player skin=
+Advancements=
+Building Blocks=
+Decoration Blocks=
+Redstone=
+Transportation=
+Brewing=
+Miscellaneous=
+Search Items=
+Foodstuffs=
+Tools=
+Combat=
+Mobs=
+Materials=
+Survival Inventory=
+Crafting=
+Inventory=
+@1/@2=
