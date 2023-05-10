@@ -47,8 +47,8 @@ AppDir
 ## Non-static Minetest directories or symlinks to these
 /bin/
 /games/*
-!/games/GoongaGame/*
 !/games/GoongaGame/
+!/games/GoongaGame/minetest.conf
 /cache
 /textures/*
 !/textures/base/
