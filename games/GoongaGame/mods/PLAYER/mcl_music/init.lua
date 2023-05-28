@@ -1,25 +1,13 @@
 local modname = minetest.get_current_modname()
 local modpath = minetest.get_modpath(modname)
 
-local music_enabled = minetest.settings:get_bool("mcl_game_music", true)
-
-local pianowtune  = "diminixed-pianowtune02"
-local end_tune    = "diminixed-ambientwip02"
-local never_grow_up = "diminixed-nevergrowup04"
-local nether_tune = "horizonchris96-traitor"
-local odd_block = "Jester-0dd-BL0ck"
-local flock_of_one = "Jester-Flock-of-One"
-local gift = "Jester-Gift"
-local hailing_forest = "Jester-Hailing_Forest"
-local lonely_blossom = "exhale_and_tim_unwin-lonely_blossom"
-local valley_of_ghosts = "exhale_and_tim_unwin-valley_of_ghosts"
-local farmer = "exhale_and_tim_unwin-farmer"
+local music_enabled = minetest.settings:get_bool("mcl_game_music", false)
 
 local dimension_to_base_track = {
-	["overworld"]	= {pianowtune, never_grow_up, flock_of_one, gift, hailing_forest, lonely_blossom, farmer},
-	["nether"]		= {nether_tune, valley_of_ghosts},
-	["end"]			= {end_tune},
-	["mining"]		= {odd_block},
+	-- ["overworld"]	= 
+	-- ["nether"]		= 
+	-- ["end"]			= 
+	-- ["mining"]		= 
 }
 
 local listeners = {}

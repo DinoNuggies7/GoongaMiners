@@ -58,9 +58,9 @@ end
 
 local hamburger_def = {
 	description = S("A Hamburger"),
-	_doc_items_longdesc = S("A tasty hamburger that is sure to lure villagers around like a lead. Can be eaten."),
-	_doc_items_usagehelp = S("Wield this item to pull villagers to you."),
-	_tt_help = S("A tasty hamburger that is sure to lure villagers. 'I'll gladly pay you Tuesday, for a hamburger today.' - Wimpy."),
+	_doc_items_longdesc = S("eatin' da hamburger"),
+	_doc_items_usagehelp = S("eatin' da hamburger"),
+	_tt_help = S("eatin' da hamburger"),
 	inventory_image = "mcl_hamburger.png",
 	wield_image = "mcl_hamburger.png",
 	on_place = minetest.item_eat(8),
@@ -85,7 +85,7 @@ end
 local function register_achievements()
 
 	awards.register_achievement(HAMBURGER_NAME, {
-		title = S("Burger Time!"),
+		title = S("eatin' da hamburger"),
 		description = S("Craft a Hamburger."),
 		icon = "mcl_hamburger_alt.png",
 		trigger = {
@@ -110,36 +110,36 @@ end
 
 if enable_burger then
 	-- make the villagers follow the item
-	local villager = minetest.registered_entities["mobs_mc:villager"]
+	-- local villager = minetest.registered_entities["mobs_mc:villager"]
 
-	table.insert(villager.follow, HAMBURGER_NAME)
+	-- table.insert(villager.follow, HAMBURGER_NAME)
 
-	local original_rightclick = villager.on_rightclick
+	-- local original_rightclick = villager.on_rightclick
 
-	local new_on_rightclick = function(self, clicker)
-		--minetest.log("In wrapper function")
+	-- local new_on_rightclick = function(self, clicker)
+	-- 	--minetest.log("In wrapper function")
 
-		local item = clicker:get_wielded_item()
-		if item:get_name() == HAMBURGER_NAME then
-			if self.nofollow == true then
-				--minetest.log("Turn off nofollow")
-				self.nofollow = false
-			elseif self.nofollow == false then
-				--minetest.log("Turn on nofollow")
-				self.nofollow = true
-			end
-		else
-			--minetest.log("Not holding burger")
-			if self.nofollow == false then
-				--minetest.log("Turn on nofollow")
-				self.nofollow = true
-			end
-			original_rightclick(self, clicker)
-		end
-		--minetest.log("Finishing wrapper")
-	end
+	-- 	local item = clicker:get_wielded_item()
+	-- 	if item:get_name() == HAMBURGER_NAME then
+	-- 		if self.nofollow == true then
+	-- 			--minetest.log("Turn off nofollow")
+	-- 			self.nofollow = false
+	-- 		elseif self.nofollow == false then
+	-- 			--minetest.log("Turn on nofollow")
+	-- 			self.nofollow = true
+	-- 		end
+	-- 	else
+	-- 		--minetest.log("Not holding burger")
+	-- 		if self.nofollow == false then
+	-- 			--minetest.log("Turn on nofollow")
+	-- 			self.nofollow = true
+	-- 		end
+	-- 		original_rightclick(self, clicker)
+	-- 	end
+	-- 	--minetest.log("Finishing wrapper")
+	-- end
 
-	villager.on_rightclick = new_on_rightclick
+	-- villager.on_rightclick = new_on_rightclick
 
 	mcl_hamburger.register_burger_craft("mcl_mobitems:cooked_beef")
 	minetest.register_alias("hamburger", HAMBURGER_NAME)

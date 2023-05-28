@@ -197,32 +197,32 @@ local function construct_node(p1, p2, name)
 	minetest.log("warning", "[mcl_villages] Attempt to 'construct' inexistant nodes: " .. name)
 end
 
-local function spawn_iron_golem(pos)
-	--minetest.log("action", "Attempt to spawn iron golem.")
-	local p = minetest.find_node_near(pos,50,"mcl_core:grass_path")
-	if p then
-		local l=minetest.add_entity(p,"mobs_mc:iron_golem"):get_luaentity()
-		if l then
-			l._home = p
-		end
-	end
-end
+-- local function spawn_iron_golem(pos)
+-- 	--minetest.log("action", "Attempt to spawn iron golem.")
+-- 	local p = minetest.find_node_near(pos,50,"mcl_core:grass_path")
+-- 	if p then
+-- 		local l=minetest.add_entity(p,"mobs_mc:iron_golem"):get_luaentity()
+-- 		if l then
+-- 			l._home = p
+-- 		end
+-- 	end
+-- end
 
-local function spawn_villagers(minp,maxp)
-	--minetest.log("action", "Attempt to spawn villagers.")
-	local beds=minetest.find_nodes_in_area(vector.offset(minp,-20,-20,-20),vector.offset(maxp,20,20,20),{"mcl_beds:bed_red_bottom"})
-	for _,bed in pairs(beds) do
-		local m = minetest.get_meta(bed)
-		if m:get_string("villager") == "" then
-			local v=minetest.add_entity(bed,"mobs_mc:villager")
-			if v then
-				local l=v:get_luaentity()
-				l._bed = bed
-				m:set_string("villager",l._id)
-			end
-		end
-	end
-end
+-- local function spawn_villagers(minp,maxp)
+-- 	--minetest.log("action", "Attempt to spawn villagers.")
+-- 	local beds=minetest.find_nodes_in_area(vector.offset(minp,-20,-20,-20),vector.offset(maxp,20,20,20),{"mcl_beds:bed_red_bottom"})
+-- 	for _,bed in pairs(beds) do
+-- 		local m = minetest.get_meta(bed)
+-- 		if m:get_string("villager") == "" then
+-- 			local v=minetest.add_entity(bed,"mobs_mc:villager")
+-- 			if v then
+-- 				local l=v:get_luaentity()
+-- 				l._bed = bed
+-- 				m:set_string("villager",l._id)
+-- 			end
+-- 		end
+-- 	end
+-- end
 
 local function fix_village_water(minp,maxp)
 	local palettenodes = minetest.find_nodes_in_area(vector.offset(minp,-20,-20,-20),vector.offset(maxp,20,20,20), "group:water_palette")
@@ -331,10 +331,10 @@ function settlements.place_schematics(settlement_info, pr)
 			nil,
 			function(p1, p2, size, rotation, pr)
 				if is_belltower then
-					spawn_iron_golem(p1)
+					-- spawn_iron_golem(p1)
 				else
 					init_nodes(p1, p2, size, rotation, pr)
-					spawn_villagers(p1,p2)
+					-- spawn_villagers(p1,p2)
 					fix_village_water(p1,p2)
 				end
 			end,

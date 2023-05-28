@@ -4,7 +4,7 @@ local ocean_skycolor = "#7BA4FF" -- This is the case for all ocean biomes except
 
 local nether_skycolor = "#6EB1FF" -- The Nether biomes seemingly don't use the sky colour, despite having this value according to the wiki. The fog colour is used for both sky and fog.
 
-local end_skycolor = "#000000"
+local end_skycolor = "#7BA4FF"
 local end_fogcolor = "#A080A0" -- The End biomes seemingly don't use the fog colour, despite having this value according to the wiki. The sky colour is used for both sky and fog.
 
 local default_waterfogcolor = "#3F76E4"

@@ -201,8 +201,8 @@ mcl_structures.register_structure("ocean_temple",{
 	after_place = function(p,def,pr)
 		local p1 = vector.offset(p,-9,0,-9)
 		local p2 = vector.offset(p,9,32,9)
-		mcl_structures.spawn_mobs("mobs_mc:guardian",spawnon,p1,p2,pr,5,true)
-		mcl_structures.spawn_mobs("mobs_mc:guardian_elder",spawnon,p1,p2,pr,1,true)
+		-- mcl_structures.spawn_mobs("mobs_mc:guardian",spawnon,p1,p2,pr,5,true)
+		-- mcl_structures.spawn_mobs("mobs_mc:guardian_elder",spawnon,p1,p2,pr,1,true)
 		mcl_structures.construct_nodes(p1,p2,{"group:wall"})
 	end,
 	loot = {
@@ -242,22 +242,22 @@ mcl_structures.register_structure("ocean_temple",{
 	}
 })
 
-mcl_structures.register_structure_spawn({
-	name = "mobs_mc:guardian",
-	y_min = mcl_vars.mg_overworld_min,
-	y_max = mcl_vars.mg_overworld_max,
-	chance = 10,
-	interval = 60,
-	limit = 9,
-	spawnon = spawnon,
-})
+-- mcl_structures.register_structure_spawn({
+-- 	name = "mobs_mc:guardian",
+-- 	y_min = mcl_vars.mg_overworld_min,
+-- 	y_max = mcl_vars.mg_overworld_max,
+-- 	chance = 10,
+-- 	interval = 60,
+-- 	limit = 9,
+-- 	spawnon = spawnon,
+-- })
 
-mcl_structures.register_structure_spawn({
-	name = "mobs_mc:guardian_elder",
-	y_min = mcl_vars.mg_overworld_min,
-	y_max = mcl_vars.mg_overworld_max,
-	chance = 100,
-	interval = 60,
-	limit = 4,
-	spawnon = spawnon,
-})
+-- mcl_structures.register_structure_spawn({
+-- 	name = "mobs_mc:guardian_elder",
+-- 	y_min = mcl_vars.mg_overworld_min,
+-- 	y_max = mcl_vars.mg_overworld_max,
+-- 	chance = 100,
+-- 	interval = 60,
+-- 	limit = 4,
+-- 	spawnon = spawnon,
+-- })

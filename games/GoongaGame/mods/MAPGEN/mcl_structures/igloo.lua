@@ -26,8 +26,8 @@ local function spawn_mobs(p1,p2,vi,zv)
 		elseif zv and vi then
 			return
 		end
-		vi = minetest.add_entity(vector.offset(mc[1],0,1,0),"mobs_mc:villager")
-		zv = minetest.add_entity(vector.offset(mc[2],0,1,0),"mobs_mc:villager_zombie")
+		-- vi = minetest.add_entity(vector.offset(mc[1],0,1,0),"mobs_mc:villager")
+		-- zv = minetest.add_entity(vector.offset(mc[2],0,1,0),"mobs_mc:villager_zombie")
 		minetest.after(1,spawn_mobs,p1,p2,vi,zv)
 	end
 end

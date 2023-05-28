@@ -388,10 +388,11 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 		-- ... and place it and select a random mob
 		set_node(sp, {name = "mcl_mobspawners:spawner"})
 		local mobs = {
-			"mobs_mc:zombie",
-			"mobs_mc:zombie",
-			"mobs_mc:spider",
-			"mobs_mc:skeleton",
+			"mobs_mc:creeper",
+			"mobs_mc:pig",
+			"mobs_mc:chicken",
+			"mobs_mc:sheep",
+			"mobs_mc:cow",
 		}
 		local spawner_mob = mobs[pr:next(1, #mobs)]
 

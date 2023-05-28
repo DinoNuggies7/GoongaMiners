@@ -26,7 +26,7 @@ local exhaust =  mcl_hunger.exhaust
 --Configuration variables, these are all explained in README.md
 mcl_sprint = {}
 
-mcl_sprint.SPEED = 1.5
+mcl_sprint.SPEED = 1.32
 
 local players = {}
 

@@ -59,9 +59,9 @@ function tsm_railcorridors.get_default_treasure(pr)
 	-- UNUSED IN MINECLONE 2!
 end
 
--- All spawners spawn cave spiders
+-- All spawners spawn creepers
 function tsm_railcorridors.on_construct_spawner(pos)
-	mcl_mobspawners.setup_spawner(pos, "mobs_mc:cave_spider", 0, 7)
+	mcl_mobspawners.setup_spawner(pos, "mobs_mc:creeper", 0, 7)
 end
 
 -- MineClone 2's treasure function. Gets all treasures for a single chest.

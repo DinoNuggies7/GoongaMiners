@@ -1,30 +1,30 @@
-local zombie_siege_enabled = minetest.settings:get_bool("mcl_raids_zombie_siege", false)
+local creeper_siege_enabled = minetest.settings:get_bool("mcl_raids_creeper_siege", false)
 
 local function check_spawn_pos(pos)
 	return mcl_util.get_natural_light(pos) < 7
 end
 
-local function spawn_zombies(self)
+local function spawn_creepers(self)
 	local nn = minetest.find_nodes_in_area_under_air(vector.offset(self.pos,-16,-16,-16),vector.offset(self.pos,16,16,16),{"group:solid"})
 	table.shuffle(nn)
 	for i=1,20 do
 		local p = vector.offset(nn[i%#nn],0,1,0)
 		if check_spawn_pos(p) then
-			local m = mcl_mobs.spawn(p,"mobs_mc:zombie")
+			local m = mcl_mobs.spawn(p,"mobs_mc:creeper")
 			if m then
 				local l = m:get_luaentity()
 				l:gopath(self.pos)
 				table.insert(self.mobs, m)
 				self.health_max = self.health_max + l.health
 			else
-				--minetest.log("Failed to spawn zombie at location: " .. minetest.pos_to_string(p))
+				--minetest.log("Failed to spawn creeper at location: " .. minetest.pos_to_string(p))
 			end
 		end
 	end
 end
 
-mcl_events.register_event("zombie_siege",{
-	readable_name = "Zombie Siege",
+mcl_events.register_event("creeper_siege",{
+	readable_name = "Creeper Siege",
 	max_stage = 1,
 	health = 1,
 	health_max = 1,
@@ -34,11 +34,11 @@ mcl_events.register_event("zombie_siege",{
 		--minetest.log("Cond start zs")
 		local r = {}
 
-		if not zombie_siege_enabled then
-			--minetest.log("action", "Zombie siege disabled")
+		if not creeper_siege_enabled then
+			--minetest.log("action", "creeper siege disabled")
 			return r
 		else
-			--minetest.log("action", "Zombie siege start check")
+			--minetest.log("action", "creeper siege start check")
 		end
 
 		local t = minetest.get_timeofday()
@@ -48,11 +48,8 @@ mcl_events.register_event("zombie_siege",{
 		if t < 0.04 and rnd == 1 then
 			--minetest.log("Well, it's siege time")
 			for _,p in pairs(minetest.get_connected_players()) do
-				local village = mcl_raids.find_village(p:get_pos())
-				if village then
-					minetest.log("action", "Zombie siege is starting")
-					table.insert(r,{ player = p:get_player_name(), pos = village})
-				end
+				minetest.log("action", "Creeper siege is starting")
+				table.insert(r,{ player = p:get_player_name(), pos = village})
 			end
 		else
 			--minetest.log("Not night for a siege, or not success")
@@ -80,7 +77,7 @@ mcl_events.register_event("zombie_siege",{
 		if #m < 1 then
 			return true end
 	end,
-	on_stage_begin = spawn_zombies,
+	on_stage_begin = spawn_creepers,
 	cond_complete = function(self)
 		local m = {}
 		for k,o in pairs(self.mobs) do
