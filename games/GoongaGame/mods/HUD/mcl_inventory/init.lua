@@ -98,11 +98,11 @@ local function set_inventory(player)
 
 		-- Crafting guide button
 		"image_button[4.5,3;1,1;craftguide_book.png;__mcl_craftguide;]" ..
-		"tooltip[__mcl_craftguide;"..F(S("Recipe book")) .. "]" ..
+		"tooltip[__mcl_craftguide;"..F(S("Recipe book")) .. "]"
 
 		-- Help button
-		"image_button[8,3;1,1;doc_button_icon_lores.png;__mcl_doc;]" ..
-		"tooltip[__mcl_doc;" .. F(S("Help")) .. "]"
+		-- "image_button[8,3;1,1;doc_button_icon_lores.png;__mcl_doc;]" ..
+		-- "tooltip[__mcl_doc;" .. F(S("Help")) .. "]"
 
 	-- Skins button
 	if minetest.global_exists("mcl_skins") then

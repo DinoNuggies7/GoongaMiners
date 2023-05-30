@@ -17,6 +17,34 @@ local alldirs = {
 	vector.new(0, 1, 0),
 }
 
+local rock_box = {-0.13, -0.5, -0.23, 0.13, -0.4, 0.23}
+minetest.register_node("mcl_core:rock", {
+	drawtype = "nodebox",
+	description = "Rock",
+	tiles = {"default_stone.png"},
+	wield_image = "mesecons_button_wield_mask.png^".."default_stone.png".."^mesecons_button_wield_mask.png^[makealpha:255,126,126",
+	inventory_image = "mesecons_button_wield_mask.png^".."default_stone.png".."^mesecons_button_wield_mask.png^[makealpha:255,126,126",
+	wield_scale = { x=1, y=1, z=1},
+	selection_box = {
+		type = "fixed",
+		fixed = {rock_box},
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {rock_box},
+	},
+	paramtype = "light",
+	is_ground_content = true,
+	walkable = false,
+	sunlight_propagates = true,
+	groups = {handy=1, pickaxey=1, deco_block = 1, place_flowerlike = 1, attached_node = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
+	sounds = mcl_sounds.node_sound_stone_defaults(),
+	on_place = on_button_place,
+	node_placement_prediction = "",
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.01,
+})
+
 minetest.register_node("mcl_core:bone_block", {
 	description = S("Bone Block"),
 	_doc_items_longdesc = S("Bone blocks are decorative blocks and a compact storage of bone meal."),

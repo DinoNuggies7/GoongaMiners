@@ -13,7 +13,7 @@ end
 -- implemented via on_enchant and additions in mobs_mc; Slowness IV part unimplemented
 mcl_enchanting.enchantments.bane_of_arthropods = {
 	name = S("Bane of Arthropods"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {axe = true},
 	disallow = {},
@@ -32,7 +32,7 @@ mcl_enchanting.enchantments.bane_of_arthropods = {
 -- requires missing MineClone2 feature
 --[[mcl_enchanting.enchantments.channeling = {
 	name = S("Channeling"),
-	max_level = 255,
+	max_level = 10,
 	primary = {trident = true},
 	secondary = {},
 	disallow = {},
@@ -70,7 +70,7 @@ mcl_enchanting.enchantments.curse_of_vanishing = {
 -- implemented in mcl_playerplus
 mcl_enchanting.enchantments.depth_strider = {
 	name = S("Depth Strider"),
-	max_level = 255,
+	max_level = 10,
 	primary = {},
 	secondary = {armor_feet = true},
 	disallow = {non_combat_armor = true},
@@ -89,7 +89,7 @@ mcl_enchanting.enchantments.depth_strider = {
 -- implemented via on_enchant
 mcl_enchanting.enchantments.efficiency = {
 	name = S("Efficiency"),
-	max_level = 255,
+	max_level = 10,
 	primary = {pickaxe = true, shovel = true, axe = true, hoe = true},
 	secondary = {shears = true},
 	disallow = {},
@@ -111,7 +111,7 @@ mcl_enchanting.enchantments.efficiency = {
 -- implemented in mcl_mobs and via register_on_punchplayer callback
 mcl_enchanting.enchantments.fire_aspect = {
 	name = S("Fire Aspect"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {},
 	disallow = {},
@@ -141,7 +141,7 @@ end)
 
 mcl_enchanting.enchantments.flame = {
 	name = S("Flame"),
-	max_level = 255,
+	max_level = 10,
 	primary = {bow = true},
 	secondary = {},
 	disallow = {},
@@ -160,7 +160,7 @@ mcl_enchanting.enchantments.flame = {
 -- implemented in mcl_item_entity
 mcl_enchanting.enchantments.fortune = {
 	name = S("Fortune"),
-	max_level = 255,
+	max_level = 10,
 	primary = {pickaxe = true, shovel = true, axe = true, hoe = true},
 	secondary = {},
 	disallow = {},
@@ -179,7 +179,7 @@ mcl_enchanting.enchantments.fortune = {
 -- implemented via walkover.register_global
 mcl_enchanting.enchantments.frost_walker = {
 	name = S("Frost Walker"),
-	max_level = 255,
+	max_level = 10,
 	primary = {},
 	secondary = {armor_feet = true},
 	disallow = {non_combat_armor = true},
@@ -215,7 +215,7 @@ end)
 -- requires missing MineClone2 feature
 --[[mcl_enchanting.enchantments.impaling = {
 	name = S("Impaling"),
-	max_level = 255,
+	max_level = 10,
 	primary = {trident = true},
 	secondary = {},
 	disallow = {},
@@ -253,7 +253,7 @@ mcl_enchanting.enchantments.infinity = {
 -- implemented via minetest.calculate_knockback
 mcl_enchanting.enchantments.knockback = {
 	name = S("Knockback"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {},
 	disallow = {},
@@ -288,7 +288,7 @@ end
 -- implemented in mcl_mobs and mobs_mc
 mcl_enchanting.enchantments.looting = {
 	name = S("Looting"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {},
 	disallow = {},
@@ -307,7 +307,7 @@ mcl_enchanting.enchantments.looting = {
 -- requires missing MineClone2 feature
 --[[mcl_enchanting.enchantments.loyalty = {
 	name = S("Loyalty"),
-	max_level = 255,
+	max_level = 10,
 	primary = {trident = true},
 	secondary = {},
 	disallow = {},
@@ -326,7 +326,7 @@ mcl_enchanting.enchantments.looting = {
 -- implemented in mcl_fishing
 mcl_enchanting.enchantments.luck_of_the_sea = {
 	name = S("Luck of the Sea"),
-	max_level = 255,
+	max_level = 10,
 	primary = {fishing_rod = true},
 	secondary = {},
 	disallow = {},
@@ -345,7 +345,7 @@ mcl_enchanting.enchantments.luck_of_the_sea = {
 -- implemented in mcl_fishing
 mcl_enchanting.enchantments.lure = {
 	name = S("Lure"),
-	max_level = 255,
+	max_level = 10,
 	primary = {fishing_rod = true},
 	secondary = {},
 	disallow = {},
@@ -364,7 +364,7 @@ mcl_enchanting.enchantments.lure = {
 -- implemented in mcl_experience
 mcl_enchanting.enchantments.mending = {
 	name = S("Mending"),
-	max_level = 255,
+	max_level = 10,
 	primary = {},
 	secondary = {armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true, tool = true, weapon = true},
 	disallow = {},
@@ -427,7 +427,7 @@ end, 0)
 
 mcl_enchanting.enchantments.multishot = {
 	name = S("Multishot"),
-	max_level = 255,
+	max_level = 10,
 	primary = {crossbow = true},
 	secondary = {},
 	disallow = {},
@@ -446,7 +446,7 @@ mcl_enchanting.enchantments.multishot = {
 -- requires missing MineClone2 feature
 mcl_enchanting.enchantments.piercing = {
 	name = S("Piercing"),
-	max_level = 255,
+	max_level = 10,
 	primary = {crossbow = true},
 	secondary = {},
 	disallow = {},
@@ -465,7 +465,7 @@ mcl_enchanting.enchantments.piercing = {
 -- implemented in mcl_bows
 mcl_enchanting.enchantments.power = {
 	name = S("Power"),
-	max_level = 255,
+	max_level = 10,
 	primary = {bow = true},
 	secondary = {},
 	disallow = {},
@@ -484,7 +484,7 @@ mcl_enchanting.enchantments.power = {
 -- implemented via minetest.calculate_knockback (together with the Knockback enchantment) and mcl_bows
 mcl_enchanting.enchantments.punch = {
 	name = S("Punch"),
-	max_level = 255,
+	max_level = 10,
 	primary = {},
 	secondary = {bow = true},
 	disallow = {},
@@ -503,7 +503,7 @@ mcl_enchanting.enchantments.punch = {
 -- requires missing MineClone2 feature
 mcl_enchanting.enchantments.quick_charge = {
 	name = S("Quick Charge"),
-	max_level = 255,
+	max_level = 10,
 	primary = {crossbow = true},
 	secondary = {},
 	disallow = {},
@@ -522,7 +522,7 @@ mcl_enchanting.enchantments.quick_charge = {
 -- unimplemented
 --[[mcl_enchanting.enchantments.respiration = {
 	name = S("Respiration"),
-	max_level = 255,
+	max_level = 10,
 	primary = {armor_head = true},
 	secondary = {},
 	disallow = {non_combat_armor = true},
@@ -541,7 +541,7 @@ mcl_enchanting.enchantments.quick_charge = {
 -- requires missing MineClone2 feature
 --[[mcl_enchanting.enchantments.riptide = {
 	name = S("Riptide"),
-	max_level = 255,
+	max_level = 10,
 	primary = {trident = true},
 	secondary = {},
 	disallow = {},
@@ -560,7 +560,7 @@ mcl_enchanting.enchantments.quick_charge = {
 -- implemented via on_enchant
 mcl_enchanting.enchantments.sharpness = {
 	name = S("Sharpness"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {axe = true},
 	disallow = {},
@@ -598,7 +598,7 @@ mcl_enchanting.enchantments.silk_touch = {
 -- implemented via on_enchant and additions in mobs_mc
 mcl_enchanting.enchantments.smite = {
 	name = S("Smite"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {axe = true},
 	disallow = {},
@@ -617,7 +617,7 @@ mcl_enchanting.enchantments.smite = {
 -- implemented in mcl_playerplus
 mcl_enchanting.enchantments.soul_speed = {
 	name = S("Soul Speed"),
-	max_level = 255,
+	max_level = 10,
 	primary = {},
 	secondary = {armor_feet = true},
 	disallow = {non_combat_armor = true},
@@ -636,7 +636,7 @@ mcl_enchanting.enchantments.soul_speed = {
 -- requires missing MineClone2 feature
 --[[mcl_enchanting.enchantments.sweeping_edge = {
 	name = S("Sweeping Edge"),
-	max_level = 255,
+	max_level = 10,
 	primary = {sword = true},
 	secondary = {},
 	disallow = {},
@@ -655,7 +655,7 @@ mcl_enchanting.enchantments.soul_speed = {
 -- for tools & weapons implemented via on_enchant; for bows implemented in mcl_bows; for armor implemented in mcl_armor and mcl_tt; for fishing rods implemented in mcl_fishing
 mcl_enchanting.enchantments.unbreaking = {
 	name = S("Unbreaking"),
-	max_level = 255,
+	max_level = 10,
 	primary = {armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true, pickaxe = true, shovel = true, axe = true, hoe = true, sword = true, fishing_rod = true, bow = true},
 	secondary = {tool = true},
 	disallow = {non_combat_armor = true},

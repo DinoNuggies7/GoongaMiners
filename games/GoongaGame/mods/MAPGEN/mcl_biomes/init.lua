@@ -3365,6 +3365,10 @@ local function register_grass_decoration(grasstype, offset, scale, biomes)
 		node = "mcl_flowers:tallgrass"
 		place_on = {"group:grass_block_no_snow", "mcl_mud:mud"}
 		seed = 420
+	elseif grasstype == "rock" then
+		node = "mcl_core:rock"
+		place_on = {"group:grass_block", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:sand", "mcl_core:gravel", "mcl_mud:mud"}
+		seed = 10
 	end
 	local noise = {
 		offset = offset,
@@ -4966,6 +4970,7 @@ local function register_decorations()
 
 	register_doubletall_grass(-0.0005, -0.3, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
 	register_grass_decoration("tallgrass", -0.03, 1, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
+	register_grass_decoration("rock", -0.03, 1, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
 
 	-----------------
 	-- Fallen logs
@@ -5269,6 +5274,15 @@ local function register_decorations()
 	local grass_savanna = {"Savanna", "SavannaM"}
 	local grass_sparse = {"ExtremeHills", "ExtremeHills+", "ExtremeHills+_snowtop", "ExtremeHillsM", "Jungle"}
 	local grass_mpfm = {"MesaPlateauFM_grasstop"}
+	local mushroom = {"MushroomIsland", "MushroomIslandShore"}
+	
+	register_grass_decoration("rock", -0.03, 0.09, grass_forest)
+	register_grass_decoration("rock", -0.03, 0.09, grass_mpf)
+	register_grass_decoration("rock", -0.03, 0.09, grass_plains)
+	register_grass_decoration("rock", -0.03, 0.09, grass_savanna)
+	register_grass_decoration("rock", -0.03, 0.09, grass_sparse)
+	register_grass_decoration("rock", -0.03, 0.09, grass_mpfm)
+	register_grass_decoration("rock", -0.03, 0.09, mushroom)
 
 	register_grass_decoration("tallgrass", -0.03, 0.09, grass_forest)
 	register_grass_decoration("tallgrass", -0.015, 0.075, grass_forest)

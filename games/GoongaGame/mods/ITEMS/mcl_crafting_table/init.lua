@@ -31,40 +31,49 @@ function mcl_crafting_table.show_crafting_form(player)
 	)
 end
 
-minetest.register_node("mcl_crafting_table:crafting_table", {
-	description = S("Crafting Table"),
+local pile_box = {-0.5, -0.5, -0.5, 0.5, -0.45, 0.5}
+minetest.register_node("mcl_crafting_table:crafting_pile", {
+	drawtype = "nodebox",
+	description = S("Crafting Pile"),
 	_tt_help = S("3×3 crafting grid"),
-	_doc_items_longdesc = S("A crafting table is a block which grants you access to a 3×3 crafting grid which allows you to perform advanced crafts."),
-	_doc_items_usagehelp = S("Rightclick the crafting table to access the 3×3 crafting grid."),
+	_doc_items_longdesc = S("A crafting pile is a pile which grants you access to a 3×3 crafting grid which allows you to perform advanced crafts."),
+	_doc_items_usagehelp = S("Rightclick the crafting pile to access the 3×3 crafting grid."),
 	_doc_items_hidden = false,
 	is_ground_content = false,
-	tiles = {"crafting_workbench_top.png", "default_wood.png", "crafting_workbench_side.png",
-		"crafting_workbench_side.png", "crafting_workbench_front.png", "crafting_workbench_front.png"},
-	paramtype2 = "facedir",
-	groups = {handy=1,axey=1, deco_block=1, material_wood=1,flammable=-1},
+	tiles = {"crafting_pile.png"},
+	selection_box = {
+		type = "fixed",
+		fixed = {pile_box},
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {pile_box},
+	},
+	paramtype = "light",
+	groups = {handy=1, deco_block=1, flammable=1, attached_node = 1, place_flowerlike = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
 	on_rightclick = function(pos, node, player, itemstack)
 		if not player:get_player_control().sneak then
 			mcl_crafting_table.show_crafting_form(player)
 		end
 	end,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
-	_mcl_blast_resistance = 2.5,
-	_mcl_hardness = 2.5,
+	sounds = mcl_sounds.node_sound_leaves_defaults(),
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.01,
 })
 
 minetest.register_craft({
-	output = "mcl_crafting_table:crafting_table",
+	output = "mcl_crafting_table:crafting_pile",
 	recipe = {
-		{"group:wood", "group:wood"},
-		{"group:wood", "group:wood"}
+		{"mcl_core:rock", "group:leaves"},
+		{"group:leaves", "mcl_core:rock"}
 	}
 })
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_crafting_table:crafting_table",
+	recipe = "mcl_crafting_table:crafting_pile",
 	burntime = 15,
 })
 
-minetest.register_alias("crafting:workbench", "mcl_crafting_table:crafting_table")
-minetest.register_alias("mcl_inventory:workbench", "mcl_crafting_table:crafting_table")
+minetest.register_alias("crafting:workbench", "mcl_crafting_table:crafting_pile")
+minetest.register_alias("mcl_inventory:workbench", "mcl_crafting_table:crafting_pile")

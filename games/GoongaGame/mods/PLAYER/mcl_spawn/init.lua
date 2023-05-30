@@ -13,7 +13,7 @@ end
 
 minetest.register_on_newplayer(function(player)
 	print("[minimal] giving initial stuff to player")
-	player:get_inventory():add_item('main', 'mcl_tools:crowbar')
+	-- player:get_inventory():add_item('main', 'mcl_tools:crowbar')
 end)
 
 local respawn_search_interval = 30 -- seconds

@@ -86,7 +86,7 @@ local function register_achievements()
 
 	awards.register_achievement(HAMBURGER_NAME, {
 		title = S("eatin' da hamburger"),
-		description = S("Craft a Hamburger."),
+		description = S("eatin' da hamburger"),
 		icon = "mcl_hamburger_alt.png",
 		trigger = {
 			type = "craft",

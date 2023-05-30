@@ -61,7 +61,7 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 		on_place = mcl_util.rotate_axis,
 		after_destruct = mcl_core.update_leaves,
 		stack_max = 64,
-		groups = {handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+		groups = {axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		on_rotate = on_rotate,
 		_mcl_blast_resistance = 2,
@@ -76,7 +76,7 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 		paramtype2 = "facedir",
 		on_place = mcl_util.rotate_axis,
 		stack_max = 64,
-		groups = {handy=1,axey=1, bark=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+		groups = {axey=1, bark=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		is_ground_content = false,
 		on_rotate = on_rotate,
@@ -104,7 +104,7 @@ local function register_stripped_trunk(subname, description_stripped_trunk, desc
 		paramtype2 = "facedir",
 		on_place = mcl_util.rotate_axis,
 		stack_max = 64,
-		groups = {handy=1, axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+		groups = {axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		on_rotate = on_rotate,
 		_mcl_blast_resistance = 2,
@@ -118,7 +118,7 @@ local function register_stripped_trunk(subname, description_stripped_trunk, desc
 		paramtype2 = "facedir",
 		on_place = mcl_util.rotate_axis,
 		stack_max = 64,
-		groups = {handy=1, axey=1, bark=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+		groups = {axey=1, bark=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		is_ground_content = false,
 		on_rotate = on_rotate,
@@ -143,7 +143,7 @@ local function register_wooden_planks(subname, description, tiles)
 		tiles = tiles,
 		stack_max = 64,
 		is_ground_content = false,
-		groups = {handy=1,axey=1, flammable=3,wood=1,building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
+		groups = {axey=1, flammable=3,wood=1,building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		_mcl_blast_resistance = 3,
 		_mcl_hardness = 2,
@@ -164,11 +164,11 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 				},
 				{
 					items = {"mcl_core:stick 1"},
-					rarity = stick_chances[fortune_level + 1]
+					rarity = 4
 				},
 				{
 					items = {"mcl_core:stick 2"},
-					rarity = stick_chances[fortune_level + 1]
+					rarity = 4
 				},
 			}
 		}
