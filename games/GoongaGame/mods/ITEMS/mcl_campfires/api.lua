@@ -7,30 +7,21 @@ local function on_blast(pos)
 	local meta = minetest.get_meta(pos)
 	local node = minetest.get_node(pos)
 	minetest.chat_send_all("campfire destroyed: pos = "..tostring(pos))
-	for i = 1, 4 do
-		local food_entity = nil
-		local food_x = tonumber(meta:get_string("food_x_"..tostring(i)))
-		local food_y = tonumber(meta:get_string("food_y_"..tostring(i)))
-		local food_z = tonumber(meta:get_string("food_z_"..tostring(i)))
-		if food_x and food_y and food_z then
-			local entites = minetest.get_objects_inside_radius({x = food_x, y = food_y, z = food_z}, 1)
-			minetest.chat_send_all("found entity")
-			if entites then
-				for _, food_entity in ipairs(entites) do
-					if food_entity then
-						if food_entity:get_luaentity().name == "mcl_campfires:food_entity" then
-							food_entity = entity
-						end
+	local entites = minetest.get_objects_inside_radius(pos, 0.5)
+	minetest.chat_send_all("found entity")
+	if entites then
+		for _, food_entity in ipairs(entites) do
+			if food_entity then
+				if food_entity:get_luaentity().name == "mcl_campfires:food_entity" then
+					minetest.chat_send_all("removed entity")
+					food_entity:remove()
+					for i = 1, 4 do
+						meta:set_string("food_x_"..tostring(i), nil)
+						meta:set_string("food_y_"..tostring(i), nil)
+						meta:set_string("food_z_"..tostring(i), nil)
 					end
 				end
 			end
-		end
-		if food_entity then
-			minetest.chat_send_all("removed entity")
-			food_entity:remove()
-			meta:set_string("food_x_"..tostring(i), nil)
-			meta:set_string("food_y_"..tostring(i), nil)
-			meta:set_string("food_z_"..tostring(i), nil)
 		end
 	end
 	drop_items(pos, node)
@@ -45,7 +36,6 @@ function mcl_campfires.take_item(pos, node, player, itemstack)
 		vector.new( 0.25, -0.04,  0.25),
 		vector.new(-0.25, -0.04,  0.25),
 	}
-	minetest.chat_send_all("food added: pos = "..tostring(pos))
 	local food_entity = {nil,nil,nil,nil}
 	local is_creative = minetest.is_creative_enabled(player:get_player_name())
 	local inv = player:get_inventory()
@@ -60,6 +50,7 @@ function mcl_campfires.take_item(pos, node, player, itemstack)
 				local spot = campfire_inv:get_stack("main", space)
 				if not spot or spot == (ItemStack("") or ItemStack("nil")) then -- Check if the spot is empty or not
 					if not is_creative then itemstack:take_item(1) end -- Take the item if in creative
+					minetest.chat_send_all("food added: pos = "..tostring(pos))
 					campfire_inv:set_stack("main", space, stack) -- Set the inventory itemstack at the empty spot
 					campfire_meta:set_int("cooktime_"..tostring(space), 30) -- Set the cook time meta
 					food_entity[space] = minetest.add_entity(pos + campfire_spots[space], "mcl_campfires:food_entity") -- Spawn food item on the campfire
