@@ -156,7 +156,7 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 
 	local function get_drops(fortune_level)
 		local drop = {
-			max_items = 1,
+			max_items = 2,
 			items = {
 				{
 					items = {sapling},
@@ -168,6 +168,14 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 				},
 				{
 					items = {"mcl_core:stick 2"},
+					rarity = 4
+				},
+				{
+					items = {"mcl_throwing:acorn 1"},
+					rarity = 4
+				},
+				{
+					items = {"mcl_throwing:acorn 2"},
 					rarity = 4
 				},
 			}

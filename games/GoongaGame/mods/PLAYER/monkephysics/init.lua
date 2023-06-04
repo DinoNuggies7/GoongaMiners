@@ -1,26 +1,3 @@
--- local climb_speed = -0.2
--- local climbable_nodes = {
--- 	"mcl_core:dirt",
--- 	"mcl_core:dirt_with_grass",
--- 	"mcl_core:granite",
--- 	"mcl_core:diorite",
--- 	"mcl_core:leaves",
--- 	"mcl_core:darkleaves",
--- 	"mcl_core:jungleleaves",
--- 	"mcl_core:acacialeaves",
--- 	"mcl_core:spruceleaves",
--- 	"mcl_core:birchleaves",
--- }
-
--- function is_climbable(node)
--- 	for _, nodes in ipairs(climbable_nodes) do
--- 		if (node.name == nodes) then
--- 			return true
--- 		end
--- 	end
--- 	return false
--- end
-
 function is_opaque(node)
     local node_def = minetest.registered_nodes[node.name]
     if node_def.drawtype == "normal" or node_def.drawtype == "allfaces" or node_def.drawtype == "allfaces_optional" then

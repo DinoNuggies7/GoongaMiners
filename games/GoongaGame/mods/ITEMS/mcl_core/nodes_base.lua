@@ -31,7 +31,7 @@ minetest.register_node("mcl_core:stone", {
 	drop = "mcl_core:cobble",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
-	_mcl_hardness = 1.5,
+	_mcl_hardness = 3,
 	_mcl_silk_touch_drop = true,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		if awards and awards.unlock and digger and digger:is_player() then

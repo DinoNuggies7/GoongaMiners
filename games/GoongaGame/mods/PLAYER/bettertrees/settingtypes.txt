@@ -1,0 +1,5 @@
+# Makes leaves bushy, like [bushy_leaves] mod, but better
+bettertrees.bushy (Use Bushy Leaves) bool true
+
+# Use cheaper bushy leaves model for increased performance. Only applies if "Use Bushy Leaves" is set to true.
+bettertrees.cheap_bushy (Use Cheap Bushy Leaves Model) bool false

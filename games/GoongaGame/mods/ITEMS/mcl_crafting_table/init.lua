@@ -31,7 +31,7 @@ function mcl_crafting_table.show_crafting_form(player)
 	)
 end
 
-local pile_box = {-0.5, -0.5, -0.5, 0.5, -0.45, 0.5}
+local pile_box = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
 minetest.register_node("mcl_crafting_table:crafting_pile", {
 	drawtype = "nodebox",
 	description = S("Crafting Pile"),

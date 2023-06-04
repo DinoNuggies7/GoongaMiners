@@ -5,6 +5,22 @@ local vector = vector
 
 local mod_target = minetest.get_modpath("mcl_target")
 
+-- The acorn entity
+local acorn_ENTITY={
+	physical = false,
+	timer=0,
+	textures = {"acorn.png"},
+	visual_size = {x=0.5, y=0.5},
+	collisionbox = {0,0,0,0,0,0},
+	pointable = false,
+
+	get_staticdata = mcl_throwing.get_staticdata,
+	on_activate = mcl_throwing.on_activate,
+	_thrower = nil,
+
+	_lastpos={},
+}
+
 -- The snowball entity
 local snowball_ENTITY={
 	physical = false,
@@ -95,6 +111,33 @@ local function snowball_particles(pos, vel)
 		object_collision = false,
 		texture = "weather_pack_snow_snowflake"..math.random(1,2)..".png",
 	})
+end
+
+-- Acorn on_step()--> called when acorn is moving.
+local function acorn_on_step(self, dtime)
+	self.timer = self.timer + dtime
+	local pos = self.object:get_pos()
+	local vel = self.object:get_velocity()
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_nodes[node.name]
+
+	-- Destroy when hitting a solid node
+	if self._lastpos.x~=nil then
+		if (def and def.walkable) or not def then
+			-- minetest.sound_play("crack", { pos = pos, max_hear_distance=16, gain=0.7 }, true)
+			self.object:remove()
+			if mod_target and node.name == "mcl_target:target_off" then
+				mcl_target.hit(vector.round(pos), 0.4) --4 redstone ticks
+			end
+			return
+		end
+	end
+	if check_object_hit(self, pos, {fleshy = 4}) then
+		minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true)
+		self.object:remove()
+		return
+	end
+	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set _lastpos-->Node will be added at last pos outside the node
 end
 
 -- Snowball on_step()--> called when snowball is moving.
@@ -275,16 +318,31 @@ local function pearl_on_step(self, dtime)
 	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set lastpos-->Node will be added at last pos outside the node
 end
 
+acorn_ENTITY.on_step = acorn_on_step
 snowball_ENTITY.on_step = snowball_on_step
 egg_ENTITY.on_step = egg_on_step
 pearl_ENTITY.on_step = pearl_on_step
 
+minetest.register_entity("mcl_throwing:acorn_entity", acorn_ENTITY)
 minetest.register_entity("mcl_throwing:snowball_entity", snowball_ENTITY)
 minetest.register_entity("mcl_throwing:egg_entity", egg_ENTITY)
 minetest.register_entity("mcl_throwing:ender_pearl_entity", pearl_ENTITY)
 
 
 local how_to_throw = S("Use the punch key to throw.")
+
+-- Acorn
+minetest.register_craftitem("mcl_throwing:acorn", {
+	description = "Acorn",
+	_tt_help = "Throwable",
+	_doc_items_longdesc = "Throw it at your friends!",
+	_doc_items_usagehelp = how_to_throw,
+	inventory_image = "acorn.png",
+	stack_max = 16,
+	groups = { weapon_ranged = 4 },
+	on_use = mcl_throwing.get_player_throw_function("mcl_throwing:acorn_entity"),
+	_on_dispense = mcl_throwing.dispense_function,
+})
 
 -- Snowball
 minetest.register_craftitem("mcl_throwing:snowball", {
@@ -325,6 +383,7 @@ minetest.register_craftitem("mcl_throwing:ender_pearl", {
 	groups = { transport = 1 },
 })
 
+mcl_throwing.register_throwable_object("mcl_throwing:acorn", "mcl_throwing:acorn_entity", 22)
 mcl_throwing.register_throwable_object("mcl_throwing:snowball", "mcl_throwing:snowball_entity", 22)
 mcl_throwing.register_throwable_object("mcl_throwing:egg", "mcl_throwing:egg_entity", 22)
 mcl_throwing.register_throwable_object("mcl_throwing:ender_pearl", "mcl_throwing:ender_pearl_entity", 22)

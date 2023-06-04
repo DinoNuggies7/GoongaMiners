@@ -71,7 +71,7 @@ minetest.register_tool("mcl_tools:flint_knife", {
 	_mcl_toollike_wield = true,
 	on_place = carve_pumpkin,
 	_mcl_diggroups = {
-		shearsy = { speed = 1.5, level = 1, uses = 30 },
+		shearsy = { speed = 1, level = 1, uses = 30 },
 		swordy_cobweb = { speed = 1, level = 1, uses = 30 }
 	}
 })
@@ -94,14 +94,14 @@ minetest.register_tool("mcl_tools:rock_axe", {
 	_mcl_toollike_wield = true,
 	on_place = make_stripped_trunk,
 	_mcl_diggroups = {
-		axey = { speed = 1, level = 1, uses = 15 },
-		pickaxey = { speed = 0.5, level = 1, uses = 15 }
+		axey = { speed = 0.2, level = 1, uses = 15 },
+		pickaxey = { speed = 0.1, level = 1, uses = 15 }
 	}
 })
 
 -- Rock Shovel, used just for digging dirt and such faster
 minetest.register_tool("mcl_tools:rock_shovel", {
-	description = "Rock Axe",
+	description = "Rock Shovel",
 	inventory_image = "rock_shovel.png",
 	wield_image = "rock_shovel.png",
 	stack_max = 1,
