@@ -1,7 +1,11 @@
 GoongaMiners
 ========
 
+<<<<<<< HEAD
 GoongaMiners is a monke game designed after the feeling of playing in the backyard with sticks. GoongaMiners uses Minetest and MineClone2 (a subgame for Minetest) as a base. I am planning on making my own textures for everything in the future, and making a release that includes binaries for Windows and Linux.
+=======
+GoongaMiners is a monke game designed after the feeling of playing in the backyard with sticks. GoongaMiners uses Minetest and MineClone2 (a subgame for Minetest) as a base, I am planning on making my own textures for everything in the future.
+>>>>>>> 8fe870b (Update README.md)
 
 
 # Building
