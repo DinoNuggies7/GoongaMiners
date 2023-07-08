@@ -5,9 +5,9 @@ local C = minetest.colorize
 local text_color = "#313131"
 local itemslot_bg = mcl_formspec.get_itemslot_bg
 
-mcl_crafting_table = {}
+mcl_crafting_pile = {}
 
-function mcl_crafting_table.show_crafting_form(player)
+function mcl_crafting_pile.show_crafting_form(player)
 	player:get_inventory():set_width("craft", 3)
 	player:get_inventory():set_size("craft", 9)
 
@@ -32,7 +32,7 @@ function mcl_crafting_table.show_crafting_form(player)
 end
 
 local pile_box = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
-minetest.register_node("mcl_crafting_table:crafting_pile", {
+minetest.register_node("mcl_crafting_pile:crafting_pile", {
 	drawtype = "nodebox",
 	description = S("Crafting Pile"),
 	_tt_help = S("3×3 crafting grid"),
@@ -53,7 +53,7 @@ minetest.register_node("mcl_crafting_table:crafting_pile", {
 	groups = {handy=1, deco_block=1, flammable=1, attached_node = 1, place_flowerlike = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
 	on_rightclick = function(pos, node, player, itemstack)
 		if not player:get_player_control().sneak then
-			mcl_crafting_table.show_crafting_form(player)
+			mcl_crafting_pile.show_crafting_form(player)
 		end
 	end,
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
@@ -62,7 +62,7 @@ minetest.register_node("mcl_crafting_table:crafting_pile", {
 })
 
 minetest.register_craft({
-	output = "mcl_crafting_table:crafting_pile",
+	output = "mcl_crafting_pile:crafting_pile",
 	recipe = {
 		{"mcl_core:rock", "group:leaves"},
 		{"group:leaves", "mcl_core:rock"}
@@ -71,9 +71,9 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_crafting_table:crafting_pile",
+	recipe = "mcl_crafting_pile:crafting_pile",
 	burntime = 15,
 })
 
-minetest.register_alias("crafting:workbench", "mcl_crafting_table:crafting_pile")
-minetest.register_alias("mcl_inventory:workbench", "mcl_crafting_table:crafting_pile")
+minetest.register_alias("crafting:workbench", "mcl_crafting_pile:crafting_pile")
+minetest.register_alias("mcl_inventory:workbench", "mcl_crafting_pile:crafting_pile")

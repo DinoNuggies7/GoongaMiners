@@ -9,6 +9,7 @@ end
 
 local time = 0
 local jump_force = 7
+local longjump_force = 10
 local jump_press = false
 local jump_hold = false
 local isClimbing = false
@@ -17,7 +18,9 @@ minetest.register_globalstep(function(dtime)
 	for _, player in ipairs(minetest.get_connected_players()) do
 		local pos = player:get_pos()
 		local dir = player:get_look_dir()
+		local shifting = player:get_player_control().sneak
 		local node_above = minetest.get_node(pos + {x = dir.x, y = 1, z = dir.z})
+		local node_stand = minetest.get_node(pos + {x = 0, y = -0.4, z = 0})
 
 		if player:get_player_control().jump and jump_hold == false then
 			jump_press = true
@@ -29,6 +32,15 @@ minetest.register_globalstep(function(dtime)
 			jump_hold = true
 		else
 			jump_hold = false
+		end
+
+		if player:get_player_control().jump then
+			if time > 20 then
+				if shifting and node_stand.name ~= "air" then
+					player:add_velocity({x = dir.x * longjump_force, y = 1, z = dir.z * longjump_force})
+					time = 0
+				end
+			end
 		end
 
 		if jump_press then

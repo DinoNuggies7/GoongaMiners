@@ -1,4 +1,4 @@
-local mcl_skins_enabled = minetest.global_exists("mcl_skins")
+local mcl_skins_enabled = false--minetest.global_exists("mcl_skins")
 mcl_meshhand = { }
 
 ---This is a fake node that should never be placed in the world
@@ -69,10 +69,10 @@ else
 	minetest.register_node("mcl_meshhand:hand_surv", node_def)
 
 	node_def = table.copy(node_def)
-	node_def.range = creative_hand_range
+	-- node_def.range = creative_hand_range
 	node_def.groups.dig_speed_class = 7
-	node_def.tool_capabilities.groupcaps.creative_breakable = { times = { creative_dig_speed }, uses = 0 }
-	minetest.register_node("mcl_meshhand:hand_crea", node_def)
+	-- node_def.tool_capabilities.groupcaps.creative_breakable = { times = { creative_dig_speed }, uses = 0 }
+	-- minetest.register_node("mcl_meshhand:hand_crea", node_def)
 end
 
 function mcl_meshhand.update_player(player)

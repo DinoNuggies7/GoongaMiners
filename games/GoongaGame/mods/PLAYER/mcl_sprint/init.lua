@@ -26,7 +26,7 @@ local exhaust =  mcl_hunger.exhaust
 --Configuration variables, these are all explained in README.md
 mcl_sprint = {}
 
-mcl_sprint.SPEED = 1.32
+mcl_sprint.SPEED = 1
 
 local players = {}
 
@@ -163,7 +163,8 @@ minetest.register_globalstep(function(dtime)
 			local ctrl = player:get_player_control()
 			--Check if the player should be sprinting
 			if players[playerName]["clientSprint"] or ctrl.aux1 and ctrl.up and not ctrl.sneak then
-				players[playerName]["shouldSprint"] = true
+				-- players[playerName]["shouldSprint"] = true
+				players[playerName]["shouldSprint"] = false
 			else
 				players[playerName]["shouldSprint"] = false
 			end

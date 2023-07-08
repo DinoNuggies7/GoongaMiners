@@ -538,7 +538,7 @@ minetest.register_node("mcl_core:gravel", {
 	drop = {
 		max_items = 1,
 		items = {
-			{items = {"mcl_core:flint"},rarity = 4},
+			{items = {"mcl_core:flint"}},
 			{items = {"mcl_core:gravel"}}
 		}
 	},

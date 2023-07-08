@@ -37,12 +37,12 @@ minetest.register_node("mcl_core:rock", {
 	is_ground_content = true,
 	walkable = false,
 	sunlight_propagates = true,
-	groups = {handy=1, pickaxey=1, deco_block = 1, place_flowerlike = 1, attached_node = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
+	groups = {handy = 1, deco_block = 1, place_flowerlike = 1, attached_node = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
-	on_place = on_button_place,
+	on_place = on_place,
 	node_placement_prediction = "",
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.01,
+	_mcl_blast_resistance = 0,
+	_mcl_hardness = 0,
 })
 
 minetest.register_node("mcl_core:bone_block", {
