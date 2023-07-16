@@ -5,6 +5,25 @@ local vector = vector
 
 local mod_target = minetest.get_modpath("mcl_target")
 
+-- The BANANANA entity
+local banana_ENTITY={
+	physical = false,
+	timer=0,
+	textures = {"banana.png"},
+	visual_size = {x=0.5, y=0.5},
+	collisionbox = {0.5,0.5,0.5,-0.5,-0.5,-0.5},
+	pointable = false,
+
+	get_staticdata = mcl_throwing.get_staticdata,
+	on_activate = mcl_throwing.on_activate,
+	_thrower = nil,
+
+	_return = false,
+	_looking = nil,
+
+	_lastpos={},
+}
+
 -- The acorn entity
 local acorn_ENTITY={
 	physical = false,
@@ -111,6 +130,85 @@ local function snowball_particles(pos, vel)
 		object_collision = false,
 		texture = "weather_pack_snow_snowflake"..math.random(1,2)..".png",
 	})
+end
+
+-- Banana on_step()--> called when banana is moving.
+local function banana_on_step(self, dtime)
+	self.timer = self.timer + dtime
+	local pos = self.object:get_pos()
+	local vel = self.object:get_velocity()
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_nodes[node.name]
+	local player = minetest.get_player_by_name(self._thrower)
+	local pdir = vector.normalize(player:get_look_dir())
+	local ppos = player:get_pos() + vector.new(0, 1.5, 0)
+
+	if self.timer > 1 then -- returning
+		local catch_radius = 1
+		local returned = pos.x > ppos.x - catch_radius and pos.y > ppos.y - catch_radius and pos.z > ppos.z - catch_radius and pos.x < ppos.x + catch_radius and pos.y < ppos.y + catch_radius and pos.z < ppos.z + catch_radius
+		local speed = 10
+		local radius = 20
+		local dir = vector.normalize(ppos - pos)
+		local x = (dir.x * speed) + (math.sin(dir.z * speed) / math.pi) * radius
+		local z = (dir.z * speed) + (math.sin(dir.x * speed) / math.pi) * radius
+		self.object:set_velocity(vector.new(x, (ppos.y - pos.y) * 3, z))
+		minetest.chat_send_all("pos: "..pos.x.." "..pos.z.." dir: "..dir.x.." "..dir.z)
+		if returned then
+			self.object:remove()
+			if not minetest.is_creative_enabled(player:get_player_name()) then
+				player:get_inventory():set_stack("main", 1, ItemStack("mcl_throwing:banana"))
+			end
+			minetest.chat_send_all("caught")
+		end
+	else
+		if pdir.x > 0.9 then
+			self._looking = "west"
+		elseif pdir.x < -0.9 then
+			self._looking = "east"
+		elseif pdir.x < 0.4 and pdir.x > -0.4 then
+			if pdir.z > 0 then self._looking = "south" else self._looking = "north" end
+		elseif pdir.x > 0.4 and pdir.x < 0.9 then
+			if pdir.z > 0 then self._looking = "southwest" else self._looking = "northwest" end
+		elseif pdir.x < -0.4 and pdir.x > -0.9 then
+			if pdir.z > 0 then self._looking = "southeast" else self._looking = "northeast" end
+		end
+	end
+
+	-- Return when hitting a solid node
+	-- if self._return then
+	-- elseif self._collided then
+	-- 	local GRAVITY = tonumber(minetest.settings:get("movement_gravity"))
+	-- 	self.object:set_acceleration(vector.new(-vel.x, -GRAVITY, -vel.z))
+	-- 	self.physical = true
+	-- else
+	-- 	if self._lastpos.x~=nil then
+	-- 		if (def and def.walkable) or not def then
+	-- 			minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true)
+	-- 			self._collided = true
+	-- 			self.object:set_velocity(vector.new(-vel.x, -vel.y, -vel.z))
+	-- 			if mod_target and node.name == "mcl_target:target_off" then
+	-- 				mcl_target.hit(vector.round(pos), 0.4) --4 redstone ticks
+	-- 			end
+	-- 			return
+	-- 		end
+	-- 	end
+	-- 	if check_object_hit(self, pos, {fleshy = 4}) then
+	-- 		minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true)
+	-- 		return
+	-- 	end
+	-- 	if not self._collided and self._timer > 20 then
+	-- 		self._return = true
+	-- 		local speed = 10
+	-- 		if ppos.x - pos.x > 0 then self._return_vel.x =  speed end
+	-- 		if ppos.y - pos.y > 0 then self._return_vel.y =  speed end
+	-- 		if ppos.z - pos.z > 0 then self._return_vel.z =  speed end
+	-- 		if ppos.x - pos.x < 0 then self._return_vel.x = -speed end
+	-- 		if ppos.y - pos.y < 0 then self._return_vel.y = -speed end
+	-- 		if ppos.z - pos.z < 0 then self._return_vel.z = -speed end
+	-- 	end
+	-- end
+	-- self.object:set_acceleration(vector.new((ppos.x - pos.x) * 3, (ppos.y - pos.y) * 3, (ppos.z - pos.z) * 3))
+	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set _lastpos-->Node will be added at last pos outside the node
 end
 
 -- Acorn on_step()--> called when acorn is moving.
@@ -318,11 +416,13 @@ local function pearl_on_step(self, dtime)
 	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set lastpos-->Node will be added at last pos outside the node
 end
 
+banana_ENTITY.on_step = banana_on_step
 acorn_ENTITY.on_step = acorn_on_step
 snowball_ENTITY.on_step = snowball_on_step
 egg_ENTITY.on_step = egg_on_step
 pearl_ENTITY.on_step = pearl_on_step
 
+minetest.register_entity("mcl_throwing:banana_entity", banana_ENTITY)
 minetest.register_entity("mcl_throwing:acorn_entity", acorn_ENTITY)
 minetest.register_entity("mcl_throwing:snowball_entity", snowball_ENTITY)
 minetest.register_entity("mcl_throwing:egg_entity", egg_ENTITY)
@@ -330,6 +430,22 @@ minetest.register_entity("mcl_throwing:ender_pearl_entity", pearl_ENTITY)
 
 
 local how_to_throw = S("Use the punch key to throw.")
+
+-- Banana
+minetest.register_craftitem("mcl_throwing:banana", {
+	description = "Banana",
+	_tt_help = "Throwable",
+	_doc_items_longdesc = "banan come back",
+	_doc_items_usagehelp = how_to_throw,
+	inventory_image = "banana.png",
+	stack_max = 1,
+	groups = { weapon_ranged = 1, food = 2, eatable = 1, compostability = 100 },
+	on_secondary_use = minetest.item_eat(1),
+	on_place = minetest.item_eat(1),
+	on_use = mcl_throwing.get_player_throw_function("mcl_throwing:banana_entity", 10),
+	_on_dispense = mcl_throwing.dispense_function,
+	_mcl_saturation = 6.0,
+})
 
 -- Acorn
 minetest.register_craftitem("mcl_throwing:acorn", {
@@ -339,7 +455,7 @@ minetest.register_craftitem("mcl_throwing:acorn", {
 	_doc_items_usagehelp = how_to_throw,
 	inventory_image = "acorn.png",
 	stack_max = 16,
-	groups = { weapon_ranged = 4 },
+	groups = { weapon_ranged = 1 },
 	on_use = mcl_throwing.get_player_throw_function("mcl_throwing:acorn_entity"),
 	_on_dispense = mcl_throwing.dispense_function,
 })
@@ -383,6 +499,7 @@ minetest.register_craftitem("mcl_throwing:ender_pearl", {
 	groups = { transport = 1 },
 })
 
+mcl_throwing.register_throwable_object("mcl_throwing:banana", "mcl_throwing:banana_entity", 22)
 mcl_throwing.register_throwable_object("mcl_throwing:acorn", "mcl_throwing:acorn_entity", 22)
 mcl_throwing.register_throwable_object("mcl_throwing:snowball", "mcl_throwing:snowball_entity", 22)
 mcl_throwing.register_throwable_object("mcl_throwing:egg", "mcl_throwing:egg_entity", 22)

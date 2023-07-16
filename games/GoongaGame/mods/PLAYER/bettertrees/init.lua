@@ -62,12 +62,12 @@ minetest.register_on_mods_loaded(function()
                     walkable = false,
                     climbable = true,
                     -- Climbing through leaves should slow players down
-                    move_resistance = 3,
+                    move_resistance = 1,
                     waving = 2,
                     -- Make leaves fall when placed
-                    after_place_node = function(pos, oldnode, oldmeta, drops)
-                        minetest.spawn_falling_node(pos)
-                    end,
+                    -- after_place_node = function(pos, oldnode, oldmeta, drops)
+                    --     minetest.spawn_falling_node(pos)
+                    -- end,
                     -- Adapted from Tenplus1's regrow mod, licensed under MIT
                     after_dig_node = function(pos, oldnode, oldmetadata, digger)
                         -- if node has been placed by player then do not regrow
@@ -263,9 +263,9 @@ minetest.register_globalstep(function(dtime)
                         end
                         chance = chance / sum_gravity
                     end
-                    if math.random(chance) == 1 then
-                        break_leaf(node_pos, node_name, false)
-                    end
+                    -- if math.random(chance) == 1 then
+                    --     break_leaf(node_pos, node_name, false)
+                    -- end
                 end
             end
         end

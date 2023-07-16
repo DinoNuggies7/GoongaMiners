@@ -28,7 +28,9 @@ function mcl_throwing.throw(throw_item, pos, dir, velocity, thrower)
 	local itemstring = ItemStack(throw_item):get_name()
 	local obj = minetest.add_entity(pos, entity_mapping[itemstring])
 	obj:set_velocity({x=dir.x*velocity, y=dir.y*velocity, z=dir.z*velocity})
-	obj:set_acceleration({x=dir.x*-3, y=-GRAVITY, z=dir.z*-3})
+	if (itemstring ~= "mcl_throwing:banana") then
+		obj:set_acceleration({x=dir.x*-3, y=-GRAVITY, z=dir.z*-3})
+	end
 	if thrower then
 		obj:get_luaentity()._thrower = thrower
 	end
