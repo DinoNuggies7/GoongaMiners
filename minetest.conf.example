@@ -3298,12 +3298,12 @@
 #    Key for opening the inventory.
 #    See https://github.com/minetest/irrlicht/blob/master/include/Keycodes.h
 #    type: key
-# keymap_inventory = KEY_KEY_I
+# keymap_inventory = KEY_KEY_E
 
 #    Key for moving fast in fast mode.
 #    See https://github.com/minetest/irrlicht/blob/master/include/Keycodes.h
 #    type: key
-# keymap_aux1 = KEY_KEY_E
+# keymap_aux1 = KEY_KEY_R
 
 #    Key for opening the chat window.
 #    See https://github.com/minetest/irrlicht/blob/master/include/Keycodes.h
