@@ -128,6 +128,17 @@ return {
 
 		local credit_list = {}
 		table.insert_all(credit_list, {
+			core.colorize("#44f", "GoongaMiners is made possible thanks to the amazing"),
+			core.colorize("#44f", "team and community at both Minetest and MineClone2."),
+			core.colorize("#4f4", "This game is free software licensed under LGPLv2.1."),
+			"",
+			"The source code for Minetest can be found here:",
+			"https://github.com/minetest/minetest",
+			"The source code for MineClone2 can be found here:",
+			"https://github.com/MineClone2/MineClone2",
+			"And the source for this game can be found here:",
+			"https://github.com/DinoNuggies4665/GoongaMiners",
+			"",
 			core.colorize("#000", "Dedication of the current release"),
 			"The 5.7.0 release is dedicated to the memory of",
 			"Minetest developer Jude Melton-Houghton (TurkeyMcMac)",
