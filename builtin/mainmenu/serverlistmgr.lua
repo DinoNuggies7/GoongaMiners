@@ -183,7 +183,7 @@ function serverlistmgr.sync()
 			local retval = core.parse_json(response.data)
 
 			local list = {}
-			local kiosk_game = "GoongaGame"
+			-- local kiosk_game = "GoongaGame"
 
 			for _, entry in pairs(retval.list) do
 				if entry.gameid == kiosk_game then
