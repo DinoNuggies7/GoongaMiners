@@ -108,15 +108,15 @@ minetest.register_on_mods_loaded(function()
             groups.falling_node = 1
             minetest.override_item(node_name, {
                 groups = groups,
-                on_punch = function(pos, node, puncher, pointed_thing)
-                    local wielded_item = puncher:get_wielded_item();
-                    if wielded_item:is_empty() then
-                        -- take a little damage
-                        local hp = puncher:get_hp()
-                        puncher:set_hp(hp - 0.1, 'node_damage')
-                    end
-                    minetest.node_punch(pos, node, puncher, pointed_thing)
-                end
+                -- on_punch = function(pos, node, puncher, pointed_thing)
+                --     local wielded_item = puncher:get_wielded_item();
+                --     if wielded_item:is_empty() then
+                --         -- take a little damage
+                --         local hp = puncher:get_hp()
+                --         puncher:set_hp(hp - 0.1, 'node_damage')
+                --     end
+                --     minetest.node_punch(pos, node, puncher, pointed_thing)
+                -- end
             })
         elseif def.groups and (def.groups.soil or def.groups.snowy) then
             table.insert(dirt_nodes, node_name)
