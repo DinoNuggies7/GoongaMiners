@@ -156,7 +156,6 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 
 	local function get_drops(fortune_level)
 		local drop = {
-			max_items = 2,
 			items = {
 				{
 					items = {sapling},
@@ -170,6 +169,11 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 					items = {"mcl_core:stick 2"},
 					rarity = 4
 				},
+			}
+		}
+		if drop_apples then
+			table.insert(drop.items, {
+				max_items = 2,
 				{
 					items = {"mcl_throwing:acorn 1"},
 					rarity = 4
@@ -178,10 +182,6 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 					items = {"mcl_throwing:acorn 2"},
 					rarity = 4
 				},
-			}
-		}
-		if drop_apples then
-			table.insert(drop.items, {
 				items = {"mcl_core:apple"},
 				rarity = apple_chances[fortune_level + 1]
 			})

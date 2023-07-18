@@ -8,18 +8,20 @@ local mod_target = minetest.get_modpath("mcl_target")
 -- The BANANANA entity
 local banana_ENTITY={
 	physical = false,
-	timer=0,
-	textures = {"banana.png"},
-	visual_size = {x=0.5, y=0.5},
-	collisionbox = {0.5,0.5,0.5,-0.5,-0.5,-0.5},
+	visual = "wielditem",
+	wield_item = "mcl_throwing:banana",
+	wield_image = "banana.png",
+	visual_size = {x=0.25, y=0.25},
+	collisionbox = {0.125,0.125,0.125,-0.125,-0.125,-0.125},
 	pointable = false,
+	timer=0,
 
 	get_staticdata = mcl_throwing.get_staticdata,
 	on_activate = mcl_throwing.on_activate,
 	_thrower = nil,
 
-	_return = false,
-	_looking = nil,
+	_ppos = nil,
+	_destination = nil,
 
 	_lastpos={},
 }
@@ -134,81 +136,66 @@ end
 
 -- Banana on_step()--> called when banana is moving.
 local function banana_on_step(self, dtime)
-	self.timer = self.timer + dtime
 	local pos = self.object:get_pos()
 	local vel = self.object:get_velocity()
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
 	local player = minetest.get_player_by_name(self._thrower)
-	local pdir = vector.normalize(player:get_look_dir())
 	local ppos = player:get_pos() + vector.new(0, 1.5, 0)
+	if self.timer == 0 then self._ppos = ppos end
 
-	if self.timer > 1 then -- returning
-		local catch_radius = 1
-		local returned = pos.x > ppos.x - catch_radius and pos.y > ppos.y - catch_radius and pos.z > ppos.z - catch_radius and pos.x < ppos.x + catch_radius and pos.y < ppos.y + catch_radius and pos.z < ppos.z + catch_radius
-		local speed = 10
-		local radius = 20
-		local dir = vector.normalize(ppos - pos)
-		local x = (dir.x * speed) + (math.sin(dir.z * speed) / math.pi) * radius
-		local z = (dir.z * speed) + (math.sin(dir.x * speed) / math.pi) * radius
-		self.object:set_velocity(vector.new(x, (ppos.y - pos.y) * 3, z))
-		minetest.chat_send_all("pos: "..pos.x.." "..pos.z.." dir: "..dir.x.." "..dir.z)
-		if returned then
-			self.object:remove()
-			if not minetest.is_creative_enabled(player:get_player_name()) then
-				player:get_inventory():set_stack("main", 1, ItemStack("mcl_throwing:banana"))
+	-- Damage mobs that it hits
+	if check_object_hit(self, pos, {fleshy = 4}) then
+		minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true) -- replace with another banana sound
+		return
+	end
+
+	-- Stop flying when hitting a solid node
+	if self._lastpos.x~=nil then
+		if (def and def.walkable) or not def then
+			minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true) -- replace with banana sound
+			if mod_target and node.name == "mcl_target:target_off" then
+				mcl_target.hit(vector.round(pos), 0.4) --4 redstone ticks
 			end
-			minetest.chat_send_all("caught")
-		end
-	else
-		if pdir.x > 0.9 then
-			self._looking = "west"
-		elseif pdir.x < -0.9 then
-			self._looking = "east"
-		elseif pdir.x < 0.4 and pdir.x > -0.4 then
-			if pdir.z > 0 then self._looking = "south" else self._looking = "north" end
-		elseif pdir.x > 0.4 and pdir.x < 0.9 then
-			if pdir.z > 0 then self._looking = "southwest" else self._looking = "northwest" end
-		elseif pdir.x < -0.4 and pdir.x > -0.9 then
-			if pdir.z > 0 then self._looking = "southeast" else self._looking = "northeast" end
+			self.object:remove()
+			minetest.add_item(pos, ItemStack("mcl_throwing:banana"))
+			return
 		end
 	end
 
-	-- Return when hitting a solid node
-	-- if self._return then
-	-- elseif self._collided then
-	-- 	local GRAVITY = tonumber(minetest.settings:get("movement_gravity"))
-	-- 	self.object:set_acceleration(vector.new(-vel.x, -GRAVITY, -vel.z))
-	-- 	self.physical = true
-	-- else
-	-- 	if self._lastpos.x~=nil then
-	-- 		if (def and def.walkable) or not def then
-	-- 			minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true)
-	-- 			self._collided = true
-	-- 			self.object:set_velocity(vector.new(-vel.x, -vel.y, -vel.z))
-	-- 			if mod_target and node.name == "mcl_target:target_off" then
-	-- 				mcl_target.hit(vector.round(pos), 0.4) --4 redstone ticks
-	-- 			end
-	-- 			return
-	-- 		end
-	-- 	end
-	-- 	if check_object_hit(self, pos, {fleshy = 4}) then
-	-- 		minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true)
-	-- 		return
-	-- 	end
-	-- 	if not self._collided and self._timer > 20 then
-	-- 		self._return = true
-	-- 		local speed = 10
-	-- 		if ppos.x - pos.x > 0 then self._return_vel.x =  speed end
-	-- 		if ppos.y - pos.y > 0 then self._return_vel.y =  speed end
-	-- 		if ppos.z - pos.z > 0 then self._return_vel.z =  speed end
-	-- 		if ppos.x - pos.x < 0 then self._return_vel.x = -speed end
-	-- 		if ppos.y - pos.y < 0 then self._return_vel.y = -speed end
-	-- 		if ppos.z - pos.z < 0 then self._return_vel.z = -speed end
-	-- 	end
-	-- end
-	-- self.object:set_acceleration(vector.new((ppos.x - pos.x) * 3, (ppos.y - pos.y) * 3, (ppos.z - pos.z) * 3))
+	-- Turn 90 degrees then return to player
+	if self.timer > 1 then
+		local catch_radius = 0.25
+		local returned = pos.x > ppos.x - catch_radius and pos.y > ppos.y - 0.5 and pos.z > ppos.z - catch_radius and pos.x < ppos.x + catch_radius and pos.y < ppos.y + 0.5 and pos.z < ppos.z + catch_radius
+		local dir = vector.normalize(self._ppos - pos)
+		local ndest = vector.normalize(self._destination)
+		local speed = 10
+		local x = 0
+		local z = 0
+
+		if self.timer > 1.5 then
+			x = dir.x * speed
+			z = dir.z * speed
+		else
+			x = ndest.x * speed
+			z = ndest.z * speed
+		end
+		self.object:set_velocity(vector.new(x, (self._ppos.y - pos.y) * 3, z))
+
+		if returned then
+			self.object:remove()
+			minetest.add_item(ppos, ItemStack("mcl_throwing:banana"))
+		elseif self.timer > 2.5 then
+			self.object:remove()
+			minetest.add_item(pos, ItemStack("mcl_throwing:banana"))
+		end
+	else
+		self._destination = vector.new((pos.z - self._ppos.z) * -1, self._ppos.y - pos.y, pos.x - self._ppos.x)
+	end
+
+	self.object:set_rotation({x = math.pi / -2, y = self.timer * 20, z = 0})
 	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set _lastpos-->Node will be added at last pos outside the node
+	self.timer = self.timer + dtime
 end
 
 -- Acorn on_step()--> called when acorn is moving.
