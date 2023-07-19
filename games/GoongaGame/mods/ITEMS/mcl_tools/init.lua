@@ -90,7 +90,7 @@ minetest.register_tool("mcl_tools:rock_axe", {
 		punch_attack_uses = 30,
 	},
 	sound = { breaks = "default_tool_breaks" },
-	_repair_material = "mcl_core:rock",
+	_repair_material = "mcl_core:rock_medium",
 	_mcl_toollike_wield = true,
 	on_place = make_stripped_trunk,
 	_mcl_diggroups = {
@@ -113,7 +113,7 @@ minetest.register_tool("mcl_tools:rock_shovel", {
 		punch_attack_uses = 15,
 	},
 	sound = { breaks = "default_tool_breaks" },
-	_repair_material = "mcl_core:rock",
+	_repair_material = "mcl_core:rock_medium",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		shovely = { speed = 1, level = 1, uses = 30 }

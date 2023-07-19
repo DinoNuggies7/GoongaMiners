@@ -30,7 +30,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "mcl_tools:rock_axe",
 	recipe = {
-		{"mcl_core:rock", "mcl_core:vine", ""},
+		{"mcl_core:rock_medium", "mcl_core:vine", ""},
 		{"mcl_core:vine", "mcl_core:stick", ""},
 		{"", "mcl_core:stick", ""}
 	}
@@ -39,7 +39,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "mcl_tools:rock_shovel",
 	recipe = {
-		{"mcl_core:vine", "mcl_core:rock", "mcl_core:vine"},
+		{"mcl_core:vine", "mcl_core:rock_medium", "mcl_core:vine"},
 		{"", "mcl_core:stick", ""},
 		{"", "mcl_core:stick", ""}
 	}

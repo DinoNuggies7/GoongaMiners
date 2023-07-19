@@ -31,7 +31,6 @@ function mcl_crafting_pile.show_crafting_form(player)
 	)
 end
 
-local pile_box = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
 minetest.register_node("mcl_crafting_pile:crafting_pile", {
 	drawtype = "nodebox",
 	description = S("Crafting Pile"),
@@ -43,11 +42,11 @@ minetest.register_node("mcl_crafting_pile:crafting_pile", {
 	tiles = {"crafting_pile.png"},
 	selection_box = {
 		type = "fixed",
-		fixed = {pile_box},
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5},
 	},
 	node_box = {
 		type = "fixed",
-		fixed = {pile_box},
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5},
 	},
 	paramtype = "light",
 	groups = {handy=1, deco_block=1, flammable=1, attached_node = 1, place_flowerlike = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
@@ -64,8 +63,8 @@ minetest.register_node("mcl_crafting_pile:crafting_pile", {
 minetest.register_craft({
 	output = "mcl_crafting_pile:crafting_pile",
 	recipe = {
-		{"mcl_core:rock", "group:leaves"},
-		{"group:leaves", "mcl_core:rock"}
+		{"mcl_core:rock_small", "group:leaves"},
+		{"group:leaves", "mcl_core:rock_small"}
 	}
 })
 
