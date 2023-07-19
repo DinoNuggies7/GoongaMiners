@@ -425,7 +425,7 @@ minetest.register_craftitem("mcl_throwing:banana", {
 	_doc_items_longdesc = "banan come back",
 	_doc_items_usagehelp = how_to_throw,
 	inventory_image = "banana.png",
-	stack_max = 1,
+	stack_max = 16,
 	groups = { weapon_ranged = 1, food = 1, eatable = 6, compostability = 100 },
 	on_secondary_use = minetest.item_eat(6),
 	on_place = minetest.item_eat(6),

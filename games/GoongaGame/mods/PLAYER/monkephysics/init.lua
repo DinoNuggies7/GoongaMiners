@@ -65,7 +65,7 @@ minetest.register_globalstep(function(dtime)
 		end 
 
 		if player:get_player_control().jump then
-			if time > 0.5 then
+			if time > 1 then
 				if shifting and is_solid(node_stand, true) then
 					player:add_velocity(vector.new(ndir.x * longjump_force, 0.5, ndir.z * longjump_force))
 					time = 0
@@ -74,7 +74,7 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		if jump_press then
-			if time > 0.5 then
+			if time > 1 then
 				if player:get_velocity().y < 0 then
 					if is_solid(node_above, false) then
 						local vel = player:get_velocity()

@@ -156,34 +156,39 @@ local function register_leaves(subname, description, longdesc, tiles, color, par
 
 	local function get_drops(fortune_level)
 		local drop = {
+			max_items = 2,
 			items = {
 				{
 					items = {sapling},
-					rarity = sapling_chances[fortune_level + 1] or sapling_chances[fortune_level]
+					rarity = sapling_chances[fortune_level + 1] or sapling_chances[fortune_level],
 				},
 				{
 					items = {"mcl_core:stick 1"},
-					rarity = 4
+					rarity = 4,
 				},
 				{
 					items = {"mcl_core:stick 2"},
-					rarity = 4
+					rarity = 4,
 				},
 			}
 		}
-		if drop_apples then
+		if drop_apples == 1 then
 			table.insert(drop.items, {
-				max_items = 2,
-				{
-					items = {"mcl_throwing:acorn 1"},
-					rarity = 4
-				},
-				{
-					items = {"mcl_throwing:acorn 2"},
-					rarity = 4
-				},
+				items = {"mcl_throwing:acorn 1"},
+				rarity = 4,
+			})
+			table.insert(drop.items, {
+				items = {"mcl_throwing:acorn 2"},
+				rarity = 4,
+			})
+			table.insert(drop.items, {
 				items = {"mcl_core:apple"},
-				rarity = apple_chances[fortune_level + 1]
+				rarity = apple_chances[fortune_level + 1],
+			})
+		elseif drop_apples == 2 then
+			table.insert(drop.items, {
+				items = {"mcl_throwing:banana 1"},
+				rarity = 10,
 			})
 		end
 		return drop
@@ -332,12 +337,12 @@ register_sapling("birchsapling", S("Birch Sapling"),
 	"mcl_core_sapling_birch.png", {-4/16, -0.5, -4/16, 4/16, 0.5, 4/16})
 
 
-register_leaves("leaves", S("Oak Leaves"), S("Oak leaves are grown from oak trees."), {"default_leaves.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:sapling", true, {20, 16, 12, 10}, 1)
-register_leaves("darkleaves", S("Dark Oak Leaves"), S("Dark oak leaves are grown from dark oak trees."), {"mcl_core_leaves_big_oak.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:darksapling", true, {20, 16, 12, 10}, 1)
-register_leaves("jungleleaves", S("Jungle Leaves"), S("Jungle leaves are grown from jungle trees."), {"default_jungleleaves.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:junglesapling", false, {40, 26, 32, 24, 10}, 1)
-register_leaves("acacialeaves", S("Acacia Leaves"), S("Acacia leaves are grown from acacia trees."), {"default_acacia_leaves.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:acaciasapling", false, {20, 16, 12, 10}, 1)
-register_leaves("spruceleaves", S("Spruce Leaves"), S("Spruce leaves are grown from spruce trees."), {"mcl_core_leaves_spruce.png"}, "#619961", "none", nil, "mcl_core:sprucesapling", false, {20, 16, 12, 10}, 0)
-register_leaves("birchleaves", S("Birch Leaves"), S("Birch leaves are grown from birch trees."), {"mcl_core_leaves_birch.png"}, "#80A755", "none", nil, "mcl_core:birchsapling", false, {20, 16, 12, 10}, 0)
+register_leaves("leaves", S("Oak Leaves"), S("Oak leaves are grown from oak trees."), {"default_leaves.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:sapling", 1, {20, 16, 12, 10}, 1)
+register_leaves("darkleaves", S("Dark Oak Leaves"), S("Dark oak leaves are grown from dark oak trees."), {"mcl_core_leaves_big_oak.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:darksapling", 1, {20, 16, 12, 10}, 1)
+register_leaves("jungleleaves", S("Jungle Leaves"), S("Jungle leaves are grown from jungle trees."), {"default_jungleleaves.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:junglesapling", 2, {40, 26, 32, 24, 10}, 1)
+register_leaves("acacialeaves", S("Acacia Leaves"), S("Acacia leaves are grown from acacia trees."), {"default_acacia_leaves.png"}, "#48B518", "color", "mcl_core_palette_foliage.png", "mcl_core:acaciasapling", 0, {20, 16, 12, 10}, 1)
+register_leaves("spruceleaves", S("Spruce Leaves"), S("Spruce leaves are grown from spruce trees."), {"mcl_core_leaves_spruce.png"}, "#619961", "none", nil, "mcl_core:sprucesapling", 0, {20, 16, 12, 10}, 0)
+register_leaves("birchleaves", S("Birch Leaves"), S("Birch leaves are grown from birch trees."), {"mcl_core_leaves_birch.png"}, "#80A755", "none", nil, "mcl_core:birchsapling", 0, {20, 16, 12, 10}, 0)
 
 
 
