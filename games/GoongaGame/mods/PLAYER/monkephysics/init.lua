@@ -1,4 +1,4 @@
-function is_solid(node)
+function is_solid(node, allow_leaves)
 	local nodedef = minetest.registered_nodes[node.name]
 	local solid = false
 	local non_solid_drawtypes = {
@@ -14,6 +14,22 @@ function is_solid(node)
 		"raillike",
 		"mesh",
 	}
+	local leaves = {
+		"mcl_core:leaves",
+		"mcl_core:darkleaves",
+		"mcl_core:jungleleaves",
+		"mcl_core:acacialeaves",
+		"mcl_core:spruceleaves",
+		"mcl_core:birchleaves",
+	}
+	if allow_leaves then
+		for _, name in ipairs(leaves) do
+			if node and node.name and node.name == name then
+				solid = true
+				return true
+			end
+		end
+	end
 	for _, drawtype in ipairs(non_solid_drawtypes) do
 		if nodedef and nodedef.drawtype and nodedef.drawtype ~= drawtype then
 			solid = true
@@ -66,7 +82,7 @@ minetest.register_globalstep(function(dtime)
 
 		if player:get_player_control().jump then
 			if time > 1 then
-				if shifting and is_solid(node_stand) then
+				if shifting and is_solid(node_stand, true) then
 					player:add_velocity(vector.new(ndir.x * longjump_force, 0.5, ndir.z * longjump_force))
 					time = 0
 				end
@@ -76,7 +92,7 @@ minetest.register_globalstep(function(dtime)
 		if jump_press then
 			if time > 0.4 then
 				if player:get_velocity().y < 0 then
-					if is_solid(node_front) then
+					if is_solid(node_front, false) then
 						local vel = player:get_velocity()
 						player:add_velocity(vector.new(dir.x * -jump_force - vel.x, jump_force - vel.y, dir.z * -jump_force - vel.z))
 						time = 0

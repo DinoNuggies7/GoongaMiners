@@ -128,7 +128,7 @@ local function register_biomes()
 		-- "Plains",
 		-- "SunflowerPlains",
 		-- "Forest",
-		"FlowerForest",
+		-- "FlowerForest",
 		-- "BirchForest",
 		-- "BirchForestM",
 		"RoofedForest",
@@ -865,66 +865,66 @@ local function register_biomes()
 	-- })
 
 	-- Flower Forest
-	minetest.register_biome({
-		name = "FlowerForest",
-		node_top = "mcl_core:dirt_with_grass",
-		depth_top = 1,
-		node_filler = "mcl_core:dirt",
-		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
-		depth_riverbed = 2,
-		y_min = 3,
-		y_max = mcl_vars.mg_overworld_max,
-		humidity_point = 44,
-		heat_point = 32,
-		_mcl_biome_type = "medium",
-		_mcl_grass_palette_index = 14,
-		_mcl_foliage_palette_index = 7,
-		_mcl_water_palette_index = 0,
-		_mcl_waterfogcolor = default_waterfogcolor,
-		_mcl_skycolor = "#79A6FF",
-		_mcl_fogcolor = overworld_fogcolor
-	})
-	minetest.register_biome({
-		name = "FlowerForest_beach",
-		node_top = "mcl_core:sand",
-		depth_top = 2,
-		node_filler = "mcl_core:sandstone",
-		depth_filler = 1,
-		node_riverbed = "mcl_core:sand",
-		depth_riverbed = 2,
-		y_min = -2,
-		y_max = 2,
-		humidity_point = 44,
-		heat_point = 32,
-		_mcl_biome_type = "medium",
-		_mcl_grass_palette_index = 14,
-		_mcl_foliage_palette_index = 1,
-		_mcl_water_palette_index = 0,
-		_mcl_waterfogcolor = default_waterfogcolor,
-		_mcl_skycolor = beach_skycolor,
-		_mcl_fogcolor = overworld_fogcolor
-	})
-	minetest.register_biome({
-		name = "FlowerForest_ocean",
-		node_top = "mcl_core:sand",
-		depth_top = 1,
-		node_filler = "mcl_core:sand",
-		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
-		depth_riverbed = 2,
-		y_min = OCEAN_MIN,
-		y_max = -3,
-		humidity_point = 44,
-		heat_point = 32,
-		_mcl_biome_type = "medium",
-		_mcl_grass_palette_index = 14,
-		_mcl_foliage_palette_index = 0,
-		_mcl_water_palette_index = 0,
-		_mcl_waterfogcolor = default_waterfogcolor,
-		_mcl_skycolor = ocean_skycolor,
-		_mcl_fogcolor = overworld_fogcolor
-	})
+	-- minetest.register_biome({
+	-- 	name = "FlowerForest",
+	-- 	node_top = "mcl_core:dirt_with_grass",
+	-- 	depth_top = 1,
+	-- 	node_filler = "mcl_core:dirt",
+	-- 	depth_filler = 3,
+	-- 	node_riverbed = "mcl_core:sand",
+	-- 	depth_riverbed = 2,
+	-- 	y_min = 3,
+	-- 	y_max = mcl_vars.mg_overworld_max,
+	-- 	humidity_point = 44,
+	-- 	heat_point = 32,
+	-- 	_mcl_biome_type = "medium",
+	-- 	_mcl_grass_palette_index = 14,
+	-- 	_mcl_foliage_palette_index = 7,
+	-- 	_mcl_water_palette_index = 0,
+	-- 	_mcl_waterfogcolor = default_waterfogcolor,
+	-- 	_mcl_skycolor = "#79A6FF",
+	-- 	_mcl_fogcolor = overworld_fogcolor
+	-- })
+	-- minetest.register_biome({
+	-- 	name = "FlowerForest_beach",
+	-- 	node_top = "mcl_core:sand",
+	-- 	depth_top = 2,
+	-- 	node_filler = "mcl_core:sandstone",
+	-- 	depth_filler = 1,
+	-- 	node_riverbed = "mcl_core:sand",
+	-- 	depth_riverbed = 2,
+	-- 	y_min = -2,
+	-- 	y_max = 2,
+	-- 	humidity_point = 44,
+	-- 	heat_point = 32,
+	-- 	_mcl_biome_type = "medium",
+	-- 	_mcl_grass_palette_index = 14,
+	-- 	_mcl_foliage_palette_index = 1,
+	-- 	_mcl_water_palette_index = 0,
+	-- 	_mcl_waterfogcolor = default_waterfogcolor,
+	-- 	_mcl_skycolor = beach_skycolor,
+	-- 	_mcl_fogcolor = overworld_fogcolor
+	-- })
+	-- minetest.register_biome({
+	-- 	name = "FlowerForest_ocean",
+	-- 	node_top = "mcl_core:sand",
+	-- 	depth_top = 1,
+	-- 	node_filler = "mcl_core:sand",
+	-- 	depth_filler = 3,
+	-- 	node_riverbed = "mcl_core:sand",
+	-- 	depth_riverbed = 2,
+	-- 	y_min = OCEAN_MIN,
+	-- 	y_max = -3,
+	-- 	humidity_point = 44,
+	-- 	heat_point = 32,
+	-- 	_mcl_biome_type = "medium",
+	-- 	_mcl_grass_palette_index = 14,
+	-- 	_mcl_foliage_palette_index = 0,
+	-- 	_mcl_water_palette_index = 0,
+	-- 	_mcl_waterfogcolor = default_waterfogcolor,
+	-- 	_mcl_skycolor = ocean_skycolor,
+	-- 	_mcl_fogcolor = overworld_fogcolor
+	-- })
 
 	-- Birch Forest
 	-- minetest.register_biome({
@@ -5271,7 +5271,7 @@ local function register_decorations()
 	-- Grasses and ferns
 	-- local grass_forest = {"Plains", "Taiga", "Forest", "FlowerForest", "BirchForest", "BirchForestM", "RoofedForest", "Swampland", }
 	local grass_forest = {"Taiga", "RoofedForest", "Swampland"}
-	local more_forest = {"ColdTaiga", "MegaTaiga", "MegaSpruceTaiga", "FlowerForest", "RoofedForest"}
+	local more_forest = {"ColdTaiga", "MegaTaiga", "MegaSpruceTaiga", "RoofedForest"}
 	-- local grass_mpf = {"MesaPlateauF_grasstop"}
 	-- local grass_plains = {"Plains", "SunflowerPlains", "JungleEdge", "JungleEdgeM", "MangroveSwamp"}
 	local grass_plains = {"JungleEdge", "JungleEdgeM", "MangroveSwamp"}
