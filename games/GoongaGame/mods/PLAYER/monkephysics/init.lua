@@ -79,7 +79,7 @@ minetest.register_globalstep(function(dtime)
 		-- 	player:set_physics_override({gravity = 1})
 		-- 	grabbing = false
 		-- end 
-
+		
 		if player:get_player_control().jump then
 			if time > 1 then
 				if shifting and is_solid(node_stand, true) then

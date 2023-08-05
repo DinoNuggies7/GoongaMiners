@@ -1,4 +1,4 @@
-local mcl_skins_enabled = false--minetest.global_exists("mcl_skins")
+local mcl_skins_enabled = minetest.global_exists("mcl_skins")
 mcl_meshhand = { }
 
 ---This is a fake node that should never be placed in the world

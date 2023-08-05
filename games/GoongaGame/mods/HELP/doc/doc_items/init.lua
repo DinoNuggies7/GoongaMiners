@@ -1322,20 +1322,20 @@ local function reveal_item(playername, itemstring)
 	return true
 end
 
-local function reveal_items_in_inventory(player)
-	local inv = player:get_inventory()
-	local list = inv:get_list("main")
-	for l=1, #list do
-		reveal_item(player:get_player_name(), list[l]:get_name())
-	end
-end
+-- local function reveal_items_in_inventory(player)
+-- 	local inv = player:get_inventory()
+-- 	local list = inv:get_list("main")
+-- 	for l=1, #list do
+-- 		reveal_item(player:get_player_name(), list[l]:get_name())
+-- 	end
+-- end
 
 minetest.register_on_dignode(function(pos, oldnode, digger)
 	if digger == nil then return end
 	local playername = digger:get_player_name()
 	if playername and playername ~= "" and oldnode then
 		reveal_item(playername, oldnode.name)
-		reveal_items_in_inventory(digger)
+		-- reveal_items_in_inventory(digger)
 	end
 end)
 
@@ -1387,7 +1387,7 @@ minetest.register_on_item_eat(function(hp_change, replace_with_item, itemstack, 
 end)
 
 minetest.register_on_joinplayer(function(player)
-	reveal_items_in_inventory(player)
+	-- reveal_items_in_inventory(player)
 end)
 
 --[[
@@ -1403,7 +1403,7 @@ minetest.register_globalstep(function(dtime)
 	if timer > checktime then
 		local players = minetest.get_connected_players()
 		for p=1, #players do
-			reveal_items_in_inventory(players[p])
+			-- reveal_items_in_inventory(players[p])
 		end
 
 		timer = math.fmod(timer, checktime)

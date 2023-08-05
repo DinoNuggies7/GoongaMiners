@@ -1,10 +1,12 @@
 local creeper_siege_enabled = minetest.settings:get_bool("mcl_raids_creeper_siege", false)
 
 local function check_spawn_pos(pos)
-	return mcl_util.get_natural_light(pos) < 7
+	-- return mcl_util.get_natural_light(pos) < 7
+	return true
 end
 
 local function spawn_creepers(self)
+	minetest.sound_play("peepeepoopoocheck", { pos = self.pos, max_hear_distance=512, gain=1 }, true)
 	local nn = minetest.find_nodes_in_area_under_air(vector.offset(self.pos,-16,-16,-16),vector.offset(self.pos,16,16,16),{"group:solid"})
 	table.shuffle(nn)
 	for i=1,20 do
@@ -17,7 +19,7 @@ local function spawn_creepers(self)
 				table.insert(self.mobs, m)
 				self.health_max = self.health_max + l.health
 			else
-				--minetest.log("Failed to spawn creeper at location: " .. minetest.pos_to_string(p))
+				minetest.log("Failed to spawn creeper at location: " .. minetest.pos_to_string(p))
 			end
 		end
 	end
@@ -35,24 +37,25 @@ mcl_events.register_event("creeper_siege",{
 		local r = {}
 
 		if not creeper_siege_enabled then
-			--minetest.log("action", "creeper siege disabled")
+			minetest.log("action", "creeper siege disabled")
 			return r
 		else
-			--minetest.log("action", "creeper siege start check")
+			minetest.log("action", "creeper siege start check")
 		end
 
 		local t = minetest.get_timeofday()
 		local pr = PseudoRandom(minetest.get_day_count())
-		local rnd = pr:next(1,10)
+		local rnd = pr:next(1,2)
+		local random = math.random(1, 10)
 
-		if t < 0.04 and rnd == 1 then
-			--minetest.log("Well, it's siege time")
+		if t > 0.04 then
+			minetest.log("Well, it's siege time")
 			for _,p in pairs(minetest.get_connected_players()) do
 				minetest.log("action", "Creeper siege is starting")
 				table.insert(r,{ player = p:get_player_name(), pos = village})
 			end
 		else
-			--minetest.log("Not night for a siege, or not success")
+			minetest.log("Not night for a siege, or not success")
 		end
 		if #r > 0 then return r end
 	end,

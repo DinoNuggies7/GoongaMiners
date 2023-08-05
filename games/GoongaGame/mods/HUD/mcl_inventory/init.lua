@@ -3,7 +3,7 @@ local F = minetest.formspec_escape
 
 mcl_inventory = {}
 
---local mod_player = minetest.get_modpath("mcl_player")
+-- local mod_player = minetest.get_modpath("mcl_player")
 --local mod_craftguide = minetest.get_modpath("mcl_craftguide")
 
 -- Returns a single itemstack in the given inventory to the main inventory, or drop it when there's no space left
@@ -105,11 +105,11 @@ local function set_inventory(player)
 		-- "tooltip[__mcl_doc;" .. F(S("Help")) .. "]"
 
 	-- Skins button
-	if minetest.global_exists("mcl_skins") then
-		form = form ..
-			"image_button[3,3;1,1;mcl_skins_button.png;__mcl_skins;]" ..
-			"tooltip[__mcl_skins;" .. F(S("Select player skin")) .. "]"
-	end
+	-- if minetest.global_exists("mcl_skins") then
+	-- 	form = form ..
+	-- 		"image_button[3,3;1,1;mcl_skins_button.png;__mcl_skins;]" ..
+	-- 		"tooltip[__mcl_skins;" .. F(S("Select player skin")) .. "]"
+	-- end
 
 	form = form ..
 		-- Achievements button
@@ -150,15 +150,16 @@ end)
 minetest.register_on_joinplayer(function(player)
 	--init inventory
 	local inv = player:get_inventory()
-	inv:set_width("main", 9)
-	inv:set_size("main", 36)
-	inv:set_size("offhand", 1)
+	inv:set_width("main", 0)
+	inv:set_size("main", 2)
+	inv:set_size("offhand", 0)
 
 	--set hotbar size
-	player:hud_set_hotbar_itemcount(9)
-	--add hotbar images
-	player:hud_set_hotbar_image("mcl_inventory_hotbar.png")
-	player:hud_set_hotbar_selected_image("mcl_inventory_hotbar_selected.png")
+	player:hud_set_hotbar_itemcount(1)
+	--don't add hotbar images
+	-- player:hud_set_hotbar_image("blank.png")
+	-- player:hud_set_hotbar_selected_image("blank.png")
+	player:hud_set_flags({hotbar = false})
 
 	-- In Creative Mode, the initial inventory setup is handled in creative.lua
 	if not minetest.is_creative_enabled(player:get_player_name()) then

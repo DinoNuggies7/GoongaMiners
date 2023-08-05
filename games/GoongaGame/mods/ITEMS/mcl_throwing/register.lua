@@ -14,7 +14,8 @@ local banana_ENTITY={
 	visual_size = {x=0.25, y=0.25},
 	collisionbox = {0.125,0.125,0.125,-0.125,-0.125,-0.125},
 	pointable = false,
-	timer=0,
+	timer = 0,
+	hit_timer = 0.5,
 
 	get_staticdata = mcl_throwing.get_staticdata,
 	on_activate = mcl_throwing.on_activate,
@@ -145,20 +146,20 @@ local function banana_on_step(self, dtime)
 	if self.timer == 0 then self._ppos = ppos end
 
 	-- Damage mobs that it hits
-	if check_object_hit(self, pos, {fleshy = 4}) then
-		minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true) -- replace with another banana sound
-		return
+	if self.hit_timer > 0.5 and check_object_hit(self, pos, {fleshy = 4}) then
+		minetest.sound_play("slap", { pos = pos, max_hear_distance=16, gain=0.2 }, true)
+		self.hit_timer = 0
 	end
 
 	-- Stop flying when hitting a solid node
 	if self._lastpos.x~=nil then
 		if (def and def.walkable) or not def then
-			minetest.sound_play("bonk", { pos = pos, max_hear_distance=16, gain=0.5 }, true) -- replace with banana sound
+			minetest.sound_play("splat", { pos = pos, max_hear_distance=16, gain=0.2 }, true)
 			if mod_target and node.name == "mcl_target:target_off" then
 				mcl_target.hit(vector.round(pos), 0.4) --4 redstone ticks
 			end
 			self.object:remove()
-			minetest.add_item(pos, ItemStack("mcl_throwing:banana"))
+			if not minetest.is_creative_enabled(self._thrower) then minetest.add_item(pos, ItemStack("mcl_throwing:banana")) end
 			return
 		end
 	end
@@ -167,7 +168,7 @@ local function banana_on_step(self, dtime)
 	if self.timer > 1 then
 		local catch_radius = 0.25
 		local returned = pos.x > ppos.x - catch_radius and pos.y > ppos.y - 0.5 and pos.z > ppos.z - catch_radius and pos.x < ppos.x + catch_radius and pos.y < ppos.y + 0.5 and pos.z < ppos.z + catch_radius
-		local dir = vector.normalize(self._ppos - pos)
+		local dir = vector.normalize(ppos - pos)
 		local ndest = vector.normalize(self._destination)
 		local speed = 10
 		local x = 0
@@ -180,14 +181,11 @@ local function banana_on_step(self, dtime)
 			x = ndest.x * speed
 			z = ndest.z * speed
 		end
-		self.object:set_velocity(vector.new(x, (self._ppos.y - pos.y) * 3, z))
+		self.object:set_velocity(vector.new(x, (ppos.y - pos.y) * 3, z))
 
 		if returned then
 			self.object:remove()
-			minetest.add_item(ppos, ItemStack("mcl_throwing:banana"))
-		elseif self.timer > 2.5 then
-			self.object:remove()
-			minetest.add_item(pos, ItemStack("mcl_throwing:banana"))
+			if not minetest.is_creative_enabled(self._thrower) then minetest.add_item(ppos, ItemStack("mcl_throwing:banana")) end
 		end
 	else
 		self._destination = vector.new((pos.z - self._ppos.z) * -1, self._ppos.y - pos.y, pos.x - self._ppos.x)
@@ -196,6 +194,7 @@ local function banana_on_step(self, dtime)
 	self.object:set_rotation({x = math.pi / -2, y = self.timer * 20, z = 0})
 	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set _lastpos-->Node will be added at last pos outside the node
 	self.timer = self.timer + dtime
+	self.hit_timer = self.hit_timer + dtime
 end
 
 -- Acorn on_step()--> called when acorn is moving.
@@ -425,7 +424,7 @@ minetest.register_craftitem("mcl_throwing:banana", {
 	_doc_items_longdesc = "banan come back",
 	_doc_items_usagehelp = how_to_throw,
 	inventory_image = "banana.png",
-	stack_max = 16,
+	stack_max = 1,
 	groups = { weapon_ranged = 1, food = 1, eatable = 6, compostability = 100 },
 	on_secondary_use = minetest.item_eat(6),
 	on_place = minetest.item_eat(6),

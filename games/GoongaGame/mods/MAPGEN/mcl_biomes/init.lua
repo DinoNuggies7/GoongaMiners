@@ -3370,13 +3370,13 @@ local function register_grass_decoration(grasstype, offset, scale, biomes)
 		place_on = {"group:grass_block", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:sand", "mcl_core:gravel", "mcl_mud:mud"}
 		seed = 69
 	elseif grasstype == "rock_medium" then
-		node = "mcl_core:rock_small"
+		node = "mcl_core:rock_medium"
 		place_on = {"group:grass_block", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:sand", "mcl_core:gravel", "mcl_mud:mud"}
-		seed = 6969
+		seed = 69
 	elseif grasstype == "rock_large" then
-		node = "mcl_core:rock_small"
+		node = "mcl_core:rock_large"
 		place_on = {"group:grass_block", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:sand", "mcl_core:gravel", "mcl_mud:mud"}
-		seed = 696969
+		seed = 69
 	end
 	local noise = {
 		offset = offset,
@@ -3761,25 +3761,25 @@ local function register_decorations()
 	-- 	flags = "place_center_x, place_center_z",
 	-- 	rotation = "random",
 	-- })
-	minetest.register_decoration({
-		deco_type = "schematic",
-		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.01,
-			scale = 0.0022,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"FlowerForest"},
-		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
-		schematic = mod_mcl_core .. "/schematics/mcl_core_oak_classic.mts",
-		flags = "place_center_x, place_center_z",
-		rotation = "random",
-	})
+	-- minetest.register_decoration({
+	-- 	deco_type = "schematic",
+	-- 	place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+	-- 	sidelen = 16,
+	-- 	noise_params = {
+	-- 		offset = 0.01,
+	-- 		scale = 0.0022,
+	-- 		spread = {x = 250, y = 250, z = 250},
+	-- 		seed = 2,
+	-- 		octaves = 3,
+	-- 		persist = 0.66
+	-- 	},
+	-- 	biomes = {"FlowerForest"},
+	-- 	y_min = 1,
+	-- 	y_max = mcl_vars.mg_overworld_max,
+	-- 	schematic = mod_mcl_core .. "/schematics/mcl_core_oak_classic.mts",
+	-- 	flags = "place_center_x, place_center_z",
+	-- 	rotation = "random",
+	-- })
 	-- minetest.register_decoration({
 	-- 	deco_type = "schematic",
 	-- 	place_on = {"group:grass_block", "mcl_core:dirt", },
@@ -3901,27 +3901,27 @@ local function register_decorations()
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
 	})
-	minetest.register_decoration({
-		deco_type = "schematic",
-		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
-		sidelen = 16,
-		--[[noise_params = {
-			offset = 0.01,
-			scale = 0.00001,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.33
-		},]]--
-		fill_ratio = 0.0002,
-		biomes = {"FlowerForest"},
-		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
-		schematic = mod_mcl_core .. "/schematics/mcl_core_oak_classic_bee_nest.mts",
-		flags = "place_center_x, place_center_z",
-		rotation = "random",
-		spawn_by = "group:flower",
-	})
+	-- minetest.register_decoration({
+	-- 	deco_type = "schematic",
+	-- 	place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+	-- 	sidelen = 16,
+	-- 	--[[noise_params = {
+	-- 		offset = 0.01,
+	-- 		scale = 0.00001,
+	-- 		spread = {x = 250, y = 250, z = 250},
+	-- 		seed = 2,
+	-- 		octaves = 3,
+	-- 		persist = 0.33
+	-- 	},]]--
+	-- 	fill_ratio = 0.0002,
+	-- 	biomes = {"FlowerForest"},
+	-- 	y_min = 1,
+	-- 	y_max = mcl_vars.mg_overworld_max,
+	-- 	schematic = mod_mcl_core .. "/schematics/mcl_core_oak_classic_bee_nest.mts",
+	-- 	flags = "place_center_x, place_center_z",
+	-- 	rotation = "random",
+	-- 	spawn_by = "group:flower",
+	-- })
 	-- minetest.register_decoration({
 	-- 	deco_type = "schematic",
 	-- 	place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
@@ -4414,24 +4414,24 @@ local function register_decorations()
 	-- 	flags = "place_center_x, place_center_z",
 	-- })
 
-	minetest.register_decoration({
-		deco_type = "schematic",
-		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.000333,
-			scale = -0.0015,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 11,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"FlowerForest"},
-		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
-		schematic = mod_mcl_core .. "/schematics/mcl_core_birch.mts",
-		flags = "place_center_x, place_center_z",
-	})
+	-- minetest.register_decoration({
+	-- 	deco_type = "schematic",
+	-- 	place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+	-- 	sidelen = 16,
+	-- 	noise_params = {
+	-- 		offset = 0.000333,
+	-- 		scale = -0.0015,
+	-- 		spread = {x = 250, y = 250, z = 250},
+	-- 		seed = 11,
+	-- 		octaves = 3,
+	-- 		persist = 0.66
+	-- 	},
+	-- 	biomes = {"FlowerForest"},
+	-- 	y_min = 1,
+	-- 	y_max = mcl_vars.mg_overworld_max,
+	-- 	schematic = mod_mcl_core .. "/schematics/mcl_core_birch.mts",
+	-- 	flags = "place_center_x, place_center_z",
+	-- })
 	-- minetest.register_decoration({
 	-- 	deco_type = "schematic",
 	-- 	place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
@@ -4846,10 +4846,10 @@ local function register_decorations()
 		end
 	end
 
-	register_large_flower("rose_bush", {"Forest"}, 9350, -0.008, 0.003)
-	register_large_flower("peony", {"Forest"}, 10450, -0.008, 0.003)
-	register_large_flower("lilac", {"Forest"}, 10600, -0.007, 0.003)
-	register_large_flower("sunflower", {"SunflowerPlains"}, 2940, 0.01)
+	-- register_large_flower("rose_bush", {"Forest"}, 9350, -0.008, 0.003)
+	-- register_large_flower("peony", {"Forest"}, 10450, -0.008, 0.003)
+	-- register_large_flower("lilac", {"Forest"}, 10600, -0.007, 0.003)
+	-- register_large_flower("sunflower", {"SunflowerPlains"}, 2940, 0.01)
 
 	-- Jungle bush
 
@@ -4979,7 +4979,8 @@ local function register_decorations()
 
 	register_doubletall_grass(-0.0005, -0.3, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
 	register_grass_decoration("tallgrass", -0.03, 1, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
-	register_grass_decoration("rock_small", -0.05, 0.15, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
+	register_grass_decoration("rock_small", -0.05, 0.14, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
+	register_grass_decoration("rock_medium", -0.05, 0.13, {"BambooJungle", "BambooJungleM", "BambooJungleEdge"})
 
 	-----------------
 	-- Fallen logs
@@ -5289,11 +5290,17 @@ local function register_decorations()
 	-- local grass_mpfm = {"MesaPlateauFM_grasstop"}
 	local mushroom = {"MushroomIsland", "MushroomIslandShore"}
 	
-	register_grass_decoration("rock_small", -0.05, 0.15, grass_forest)
-	register_grass_decoration("rock_small", -0.05, 0.15, more_forest)
-	register_grass_decoration("rock_small", -0.05, 0.15, grass_plains)
-	register_grass_decoration("rock_small", -0.05, 0.15, grass_sparse)
-	register_grass_decoration("rock_small", -0.05, 0.15, mushroom)
+	register_grass_decoration("rock_small", -0.05, 0.14, grass_forest)
+	register_grass_decoration("rock_small", -0.05, 0.14, more_forest)
+	register_grass_decoration("rock_small", -0.05, 0.14, grass_plains)
+	register_grass_decoration("rock_small", -0.05, 0.14, grass_sparse)
+	register_grass_decoration("rock_small", -0.05, 0.14, mushroom)
+
+	register_grass_decoration("rock_medium", -0.05, 0.13, grass_forest)
+	register_grass_decoration("rock_medium", -0.05, 0.13, more_forest)
+	register_grass_decoration("rock_medium", -0.05, 0.13, grass_plains)
+	register_grass_decoration("rock_medium", -0.05, 0.13, grass_sparse)
+	register_grass_decoration("rock_medium", -0.05, 0.13, mushroom)
 
 	register_grass_decoration("tallgrass", -0.03, 0.09, grass_forest)
 	register_grass_decoration("tallgrass", -0.015, 0.075, grass_forest)
@@ -5628,24 +5635,24 @@ local function register_decorations()
 		end
 	end
 
-	local flower_biomes1 = {"RoofedForest", "Taiga", "ColdTaiga", "Jungle", "JungleM", "JungleEdge", "JungleEdgeM"}
+	-- local flower_biomes1 = {"RoofedForest", "Taiga", "ColdTaiga", "Jungle", "JungleM", "JungleEdge", "JungleEdgeM"}
 
-	register_flower("dandelion", flower_biomes1, 8)
-	register_flower("poppy", flower_biomes1, 9439)
+	-- register_flower("dandelion", flower_biomes1, 8)
+	-- register_flower("poppy", flower_biomes1, 9439)
 
-	local flower_biomes2 = {"Plains", "SunflowerPlains"}
-	register_flower("tulip_red", flower_biomes2, 436)
-	register_flower("tulip_orange", flower_biomes2, 536)
-	register_flower("tulip_pink", flower_biomes2, 636)
-	register_flower("tulip_white", flower_biomes2, 736)
-	register_flower("azure_bluet", flower_biomes2, 800)
-	register_flower("oxeye_daisy", flower_biomes2, 3490)
+	-- local flower_biomes2 = {"Plains", "SunflowerPlains"}
+	-- register_flower("tulip_red", flower_biomes2, 436)
+	-- register_flower("tulip_orange", flower_biomes2, 536)
+	-- register_flower("tulip_pink", flower_biomes2, 636)
+	-- register_flower("tulip_white", flower_biomes2, 736)
+	-- register_flower("azure_bluet", flower_biomes2, 800)
+	-- register_flower("oxeye_daisy", flower_biomes2, 3490)
 
-	register_flower("allium", nil, 0) -- flower Forest only
-	register_flower("blue_orchid", {"Swampland"}, 64500, false)
+	-- register_flower("allium", nil, 0) -- flower Forest only
+	-- register_flower("blue_orchid", {"Swampland"}, 64500, false)
 
-	register_flower("lily_of_the_valley", nil, 325)
-	register_flower("cornflower", flower_biomes2, 486)
+	-- register_flower("lily_of_the_valley", nil, 325)
+	-- register_flower("cornflower", flower_biomes2, 486)
 end
 
 -- Decorations in non-Overworld dimensions
