@@ -8,7 +8,7 @@ GoongaMiners is a monke game designed after the feeling of playing in the backya
 Compile just like any other cmake project.
 
 ```fish
-git clone https://github.com/DinoNuggies4665/GoongaMiners.git && cd GoongaMiners
+git clone https://github.com/DinoNuggies7/GoongaMiners.git --recursive && cd GoongaMiners
 mkdir -p build && cd build
 cmake ..
 make -j$(nproc)
