@@ -10,7 +10,7 @@ Compile just like any other cmake project.
 ```fish
 git clone https://github.com/DinoNuggies7/GoongaMiners.git --recursive && cd GoongaMiners
 mkdir -p build && cd build
-cmake .. -DRUN_IN_PLACE=1
+cmake ..
 make -j$(nproc)
 sudo make install
 ```
