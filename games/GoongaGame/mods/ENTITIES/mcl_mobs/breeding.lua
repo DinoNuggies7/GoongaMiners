@@ -269,7 +269,7 @@ function mob_class:check_breeding()
 						return
 					end
 
-					mcl_experience.throw_xp(pos, math.random(1, 7))
+-- 					mcl_experience.throw_xp(pos, math.random(1, 7))
 
 					-- custom breed function
 					if parent1.on_breed then

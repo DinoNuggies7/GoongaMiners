@@ -358,29 +358,29 @@ local function register_mgv6_decorations()
 		decoration = "mcl_flowers:tallgrass",
 	})
 
-	local mushrooms = {"mcl_mushrooms:mushroom_red", "mcl_mushrooms:mushroom_brown"}
-	local mseeds = { 7133, 8244 }
-	for m=1, #mushrooms do
-		-- Mushrooms next to trees
-		minetest.register_decoration({
-			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:stone", "mcl_core:andesite", "mcl_core:diorite", "mcl_core:granite"},
-			sidelen = 16,
-			noise_params = {
-				offset = 0.04,
-				scale = 0.04,
-				spread = {x = 100, y = 100, z = 100},
-				seed = mseeds[m],
-				octaves = 3,
-				persist = 0.6
-			},
-			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
-			decoration = mushrooms[m],
-			spawn_by = { "mcl_core:tree", "mcl_core:sprucetree", "mcl_core:darktree", "mcl_core:birchtree", },
-			num_spawn_by = 1,
-		})
-	end
+-- 	local mushrooms = {"mcl_mushrooms:mushroom_red", "mcl_mushrooms:mushroom_brown"}
+-- 	local mseeds = { 7133, 8244 }
+-- 	for m=1, #mushrooms do
+-- 		-- Mushrooms next to trees
+-- 		minetest.register_decoration({
+-- 			deco_type = "simple",
+-- 			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:stone", "mcl_core:andesite", "mcl_core:diorite", "mcl_core:granite"},
+-- 			sidelen = 16,
+-- 			noise_params = {
+-- 				offset = 0.04,
+-- 				scale = 0.04,
+-- 				spread = {x = 100, y = 100, z = 100},
+-- 				seed = mseeds[m],
+-- 				octaves = 3,
+-- 				persist = 0.6
+-- 			},
+-- 			y_min = 1,
+-- 			y_max = mcl_vars.mg_overworld_max,
+-- 			decoration = mushrooms[m],
+-- 			spawn_by = { "mcl_core:tree", "mcl_core:sprucetree", "mcl_core:darktree", "mcl_core:birchtree", },
+-- 			num_spawn_by = 1,
+-- 		})
+-- 	end
 
 	-- Dead bushes
 	minetest.register_decoration({

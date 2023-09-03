@@ -1,2 +1,0 @@
-# textdomain: mcl_smithing_table
-Smithing table=

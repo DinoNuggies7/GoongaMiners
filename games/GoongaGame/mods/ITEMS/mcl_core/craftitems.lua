@@ -8,14 +8,26 @@ local enable_fapples = minetest.settings:get_bool("mcl_enable_fapples",true)
 -- Crafting items
 --
 
-minetest.register_craftitem("mcl_core:stick", {
-	description = S("Stick"),
-	_doc_items_longdesc = S("Sticks are a very versatile crafting material; used in countless crafting recipes."),
-	_doc_items_hidden = false,
+minetest.register_tool("mcl_core:stick", {
+	description = "Stick",
+	_doc_items_longdesc = "Sticks are a very versatile crafting material; used in countless crafting recipes.",
 	inventory_image = "default_stick.png",
-	stack_max = 64,
-	groups = { craftitem=1, stick=1 },
+	groups = { craftitem=1, stick=1, flammable=1, enchantability=1 },
 	_mcl_toollike_wield = true,
+})
+
+minetest.register_tool("mcl_core:cut_rock", {
+	description = "Cut Rock",
+	_doc_items_longdesc = "It's a piece of a bigger rock",
+	inventory_image = "default_flint.png",
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	groups = { craftitem=1, rock=1, enchantability=1 },
+})
+minetest.register_entity("mcl_core:cut_rock", {
+	visual = "wielditem",
+	wield_item = "mcl_core:cut_rock",
+	wield_image = "default_flint.png",
+	visual_scale = {x=0.5, y=0.5, z=0.5},
 })
 
 minetest.register_craftitem("mcl_core:paper", {
@@ -117,13 +129,13 @@ minetest.register_craftitem("mcl_core:brick", {
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:flint", {
-	description = S("Flint"),
-	_doc_items_longdesc = S("Flint is a raw material."),
-	inventory_image = "default_flint.png",
-	stack_max = 64,
-	groups = { craftitem=1 },
-})
+-- minetest.register_craftitem("mcl_core:flint", {
+-- 	description = S("Flint"),
+-- 	_doc_items_longdesc = S("Flint is a raw material."),
+-- 	inventory_image = "default_flint.png",
+-- 	stack_max = 64,
+-- 	groups = { craftitem=1 },
+-- })
 
 minetest.register_craftitem("mcl_core:sugar", {
 	description = S("Sugar"),

@@ -305,11 +305,11 @@ for _,root in pairs(propagule_water_nodes) do
 end
 
 
-mcl_flowerpots.register_potted_flower("mcl_mangrove:propagule", {
-	name = "propagule",
-	desc = S("Mangrove Propagule"),
-	image = "mcl_mangrove_propagule.png",
-})
+-- mcl_flowerpots.register_potted_flower("mcl_mangrove:propagule", {
+-- 	name = "propagule",
+-- 	desc = S("Mangrove Propagule"),
+-- 	image = "mcl_mangrove_propagule.png",
+-- })
 
 local water_tex = "default_water_source_animated.png^[verticalframe:16:0^[multiply:#3F76E4"
 
@@ -389,57 +389,57 @@ minetest.register_node("mcl_mangrove:mangrove_mud_roots", {
 	_mcl_hardness = 0.7,
 })
 
-mcl_doors:register_door("mcl_mangrove:mangrove_door", {
-	description = S("Mangrove Door"),
-	_doc_items_longdesc = S("Wooden doors are 2-block high barriers which can be opened or closed by hand and by a redstone signal."),
-	_doc_items_usagehelp = S("To open or close a wooden door, rightclick it or supply its lower half with a redstone signal."),
-	inventory_image = "mcl_mangrove_doors.png",
-	groups = {handy=1,axey=1, material_wood=1, flammable=-1},
-	_mcl_hardness = 3,
-	_mcl_blast_resistance = 3,
-	tiles_bottom = {"mcl_mangrove_door_bottom.png", "mcl_doors_door_mangrove_side_lower.png"},
-	tiles_top = {"mcl_mangrove_door_top.png", "mcl_doors_door_mangrove_side_upper.png"},
-	sounds = mcl_sounds.node_sound_wood_defaults(),
-})
+-- mcl_doors:register_door("mcl_mangrove:mangrove_door", {
+-- 	description = S("Mangrove Door"),
+-- 	_doc_items_longdesc = S("Wooden doors are 2-block high barriers which can be opened or closed by hand and by a redstone signal."),
+-- 	_doc_items_usagehelp = S("To open or close a wooden door, rightclick it or supply its lower half with a redstone signal."),
+-- 	inventory_image = "mcl_mangrove_doors.png",
+-- 	groups = {handy=1,axey=1, material_wood=1, flammable=-1},
+-- 	_mcl_hardness = 3,
+-- 	_mcl_blast_resistance = 3,
+-- 	tiles_bottom = {"mcl_mangrove_door_bottom.png", "mcl_doors_door_mangrove_side_lower.png"},
+-- 	tiles_top = {"mcl_mangrove_door_top.png", "mcl_doors_door_mangrove_side_upper.png"},
+-- 	sounds = mcl_sounds.node_sound_wood_defaults(),
+-- })
 
-mcl_doors:register_trapdoor("mcl_mangrove:mangrove_trapdoor", {
-	description = S("Mangrove Trapdoor"),
-	_doc_items_longdesc = S("Wooden trapdoors are horizontal barriers which can be opened and closed by hand or a redstone signal. They occupy the upper or lower part of a block, depending on how they have been placed. When open, they can be climbed like a ladder."),
-	_doc_items_usagehelp = S("To open or close the trapdoor, rightclick it or send a redstone signal to it."),
-	tile_front = "mcl_mangrove_trapdoor.png",
-	tile_side = "mcl_mangrove_planks.png",
-	wield_image = "mcl_mangrove_trapdoor.png",
-	groups = {handy=1,axey=1, mesecon_effector_on=1, material_wood=1, flammable=-1},
-	_mcl_hardness = 3,
-	_mcl_blast_resistance = 3,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
-})
+-- mcl_doors:register_trapdoor("mcl_mangrove:mangrove_trapdoor", {
+-- 	description = S("Mangrove Trapdoor"),
+-- 	_doc_items_longdesc = S("Wooden trapdoors are horizontal barriers which can be opened and closed by hand or a redstone signal. They occupy the upper or lower part of a block, depending on how they have been placed. When open, they can be climbed like a ladder."),
+-- 	_doc_items_usagehelp = S("To open or close the trapdoor, rightclick it or send a redstone signal to it."),
+-- 	tile_front = "mcl_mangrove_trapdoor.png",
+-- 	tile_side = "mcl_mangrove_planks.png",
+-- 	wield_image = "mcl_mangrove_trapdoor.png",
+-- 	groups = {handy=1,axey=1, mesecon_effector_on=1, material_wood=1, flammable=-1},
+-- 	_mcl_hardness = 3,
+-- 	_mcl_blast_resistance = 3,
+-- 	sounds = mcl_sounds.node_sound_wood_defaults(),
+-- })
 
-mcl_fences.register_fence_and_fence_gate(
-	"mangrove_wood_fence",
-	S("Mangrove Wood Fence"),
-	S("Mangrove Wood Fence Gate"),
-	"mcl_mangrove_fence.png",
-	{handy=1,axey=1, flammable=2,fence_wood=1, fire_encouragement=5, fire_flammability=20},
-	minetest.registered_nodes["mcl_core:wood"]._mcl_hardness,
-	minetest.registered_nodes["mcl_core:wood"]._mcl_blast_resistance,
-	{"group:fence_wood"},
-	mcl_sounds.node_sound_wood_defaults(), "mcl_mangrove_mangrove_wood_fence_gate_open", "mcl_mangrove_mangrove_wood_fence_gate_close", 1, 1,
-	"mcl_mangrove_fence_gate.png")
+-- mcl_fences.register_fence_and_fence_gate(
+-- 	"mangrove_wood_fence",
+-- 	S("Mangrove Wood Fence"),
+-- 	S("Mangrove Wood Fence Gate"),
+-- 	"mcl_mangrove_fence.png",
+-- 	{handy=1,axey=1, flammable=2,fence_wood=1, fire_encouragement=5, fire_flammability=20},
+-- 	minetest.registered_nodes["mcl_core:wood"]._mcl_hardness,
+-- 	minetest.registered_nodes["mcl_core:wood"]._mcl_blast_resistance,
+-- 	{"group:fence_wood"},
+-- 	mcl_sounds.node_sound_wood_defaults(), "mcl_mangrove_mangrove_wood_fence_gate_open", "mcl_mangrove_mangrove_wood_fence_gate_close", 1, 1,
+-- 	"mcl_mangrove_fence_gate.png")
 
-mcl_stairs.register_stair("mangrove_wood", "mcl_mangrove:mangrove_wood",
-	{handy=1,axey=1, flammable=3,wood_stairs=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
-	{"mcl_mangrove_planks.png"},
-	S("Mangrove Wood Stairs"),
-	mcl_sounds.node_sound_wood_defaults(), 3, 2,
-	"woodlike")
+-- mcl_stairs.register_stair("mangrove_wood", "mcl_mangrove:mangrove_wood",
+-- 	{handy=1,axey=1, flammable=3,wood_stairs=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
+-- 	{"mcl_mangrove_planks.png"},
+-- 	S("Mangrove Wood Stairs"),
+-- 	mcl_sounds.node_sound_wood_defaults(), 3, 2,
+-- 	"woodlike")
 
-mcl_stairs.register_slab("mangrove_wood", "mcl_mangrove:mangrove_wood",
-	{handy=1,axey=1, flammable=3,wood_slab=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
-	{"mcl_mangrove_planks.png"},
-	S("Mangrove Wood Slab"),
-	mcl_sounds.node_sound_wood_defaults(), 3, 2,
-	S("Double Mangrove Wood Slab"))
+-- mcl_stairs.register_slab("mangrove_wood", "mcl_mangrove:mangrove_wood",
+-- 	{handy=1,axey=1, flammable=3,wood_slab=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
+-- 	{"mcl_mangrove_planks.png"},
+-- 	S("Mangrove Wood Slab"),
+-- 	mcl_sounds.node_sound_wood_defaults(), 3, 2,
+-- 	S("Double Mangrove Wood Slab"))
 
 minetest.register_craft({
 	output = "mcl_mangrove:mangrove_tree_bark 3",
@@ -456,50 +456,50 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mcl_mangrove:mangrove_door",
-	burntime = 15,
-})
+-- minetest.register_craft({
+-- 	type = "fuel",
+-- 	recipe = "mcl_mangrove:mangrove_door",
+-- 	burntime = 15,
+-- })
 
-minetest.register_craft({
-	output = "mcl_mangrove:mangrove_door 3",
-	recipe = {
-		{"mcl_mangrove:mangrove_wood", "mcl_mangrove:mangrove_wood"},
-		{"mcl_mangrove:mangrove_wood", "mcl_mangrove:mangrove_wood"},
-		{"mcl_mangrove:mangrove_wood", "mcl_mangrove:mangrove_wood"},
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_mangrove:mangrove_door 3",
+-- 	recipe = {
+-- 		{"mcl_mangrove:mangrove_wood", "mcl_mangrove:mangrove_wood"},
+-- 		{"mcl_mangrove:mangrove_wood", "mcl_mangrove:mangrove_wood"},
+-- 		{"mcl_mangrove:mangrove_wood", "mcl_mangrove:mangrove_wood"},
+-- 	}
+-- })
 
-minetest.register_craft({
-	output = "mcl_mangrove:mangrove_trapdoor 2",
-	recipe = {
-		{"mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood"},
-		{"mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood"},
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_mangrove:mangrove_trapdoor 2",
+-- 	recipe = {
+-- 		{"mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood"},
+-- 		{"mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood","mcl_mangrove:mangrove_wood"},
+-- 	}
+-- })
 
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mcl_mangrove:mangrove_trapdoor",
-	burntime = 15,
-})
+-- minetest.register_craft({
+-- 	type = "fuel",
+-- 	recipe = "mcl_mangrove:mangrove_trapdoor",
+-- 	burntime = 15,
+-- })
 
-minetest.register_craft({
-		output = "mcl_mangrove:mangrove_wood_fence_gate",
-		recipe = {
-			{"mcl_core:stick", "mcl_mangrove:mangrove_wood", "mcl_core:stick"},
-			{"mcl_core:stick", "mcl_mangrove:mangrove_wood", "mcl_core:stick"},
-		}
-	})
+-- minetest.register_craft({
+-- 		output = "mcl_mangrove:mangrove_wood_fence_gate",
+-- 		recipe = {
+-- 			{"mcl_core:stick", "mcl_mangrove:mangrove_wood", "mcl_core:stick"},
+-- 			{"mcl_core:stick", "mcl_mangrove:mangrove_wood", "mcl_core:stick"},
+-- 		}
+-- 	})
 
-minetest.register_craft({
-		output = "mcl_mangrove:mangrove_wood_fence 3",
-		recipe = {
-			{"mcl_mangrove:mangrove_wood", "mcl_core:stick", "mcl_mangrove:mangrove_wood"},
-			{"mcl_mangrove:mangrove_wood", "mcl_core:stick", "mcl_mangrove:mangrove_wood"},
-		}
-	})
+-- minetest.register_craft({
+-- 		output = "mcl_mangrove:mangrove_wood_fence 3",
+-- 		recipe = {
+-- 			{"mcl_mangrove:mangrove_wood", "mcl_core:stick", "mcl_mangrove:mangrove_wood"},
+-- 			{"mcl_mangrove:mangrove_wood", "mcl_core:stick", "mcl_mangrove:mangrove_wood"},
+-- 		}
+-- 	})
 
 minetest.register_craft({
 		output = "mcl_mangrove:mangrove_wood 4",

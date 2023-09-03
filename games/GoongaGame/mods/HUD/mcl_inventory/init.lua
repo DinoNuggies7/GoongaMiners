@@ -52,8 +52,8 @@ local function set_inventory(player)
 		return
 	end
 	local inv = player:get_inventory()
-	inv:set_width("craft", 2)
-	inv:set_size("craft", 4)
+	inv:set_width("craft", 0)
+	inv:set_size("craft", 0)
 
 	local armor_slots = {"helmet", "chestplate", "leggings", "boots"}
 	local armor_slot_imgs = ""
@@ -63,11 +63,13 @@ local function set_inventory(player)
 		end
 	end
 
-	if inv:get_stack("offhand", 1):is_empty() then
-		armor_slot_imgs = armor_slot_imgs .. "image[3,2;1,1;mcl_inventory_empty_armor_slot_shield.png]"
-	end
+	-- if inv:get_stack("offhand", 1):is_empty() then
+	-- 	armor_slot_imgs = armor_slot_imgs .. "image[3,2;1,1;mcl_inventory_empty_armor_slot_shield.png]"
+	-- end
 
-	local form = "size[9,8.75]" ..
+	local slots = inv:get_size("main")
+
+	local form = "size[4,4.8]" ..
 		"background[-0.19,-0.25;9.41,9.49;crafting_formspec_bg.png]" ..
 		mcl_player.get_player_formspec_model(player, 1.0, 0.0, 2.25, 4.5, "") ..
 
@@ -80,25 +82,25 @@ local function set_inventory(player)
 		mcl_formspec.get_itemslot_bg(0,1,1,1) ..
 		mcl_formspec.get_itemslot_bg(0,2,1,1) ..
 		mcl_formspec.get_itemslot_bg(0,3,1,1) ..
-		"list[current_player;offhand;3,2;1,1]" ..
-		mcl_formspec.get_itemslot_bg(3,2,1,1) ..
+		-- "list[current_player;offhand;3,2;1,1]" ..
+		-- mcl_formspec.get_itemslot_bg(3,2,1,1) ..
 		armor_slot_imgs ..
 
 		-- Craft and inventory
-		"label[0,4;"..F(minetest.colorize("#313131", S("Inventory"))) .. "]" ..
-		"list[current_player;main;0,4.5;9,3;9]" ..
-		"list[current_player;main;0,7.74;9,1;]" ..
-		"label[4,0.5;"..F(minetest.colorize("#313131", S("Crafting"))) .. "]" ..
-		"list[current_player;craft;4,1;2,2]" ..
-		"list[current_player;craftpreview;7,1.5;1,1;]" ..
-		mcl_formspec.get_itemslot_bg(0, 4.5, 9, 3) ..
-		mcl_formspec.get_itemslot_bg(0, 7.74, 9, 1) ..
-		mcl_formspec.get_itemslot_bg(4, 1,2, 2) ..
-		mcl_formspec.get_itemslot_bg(7, 1.5, 1, 1) ..
+		-- "label[0,4;"..F(minetest.colorize("#313131", S("Inventory"))) .. "]" ..
+		"list[current_player;main;0,4;4,1;]" ..
+		-- "list[current_player;main;0,5;2,1;]" ..
+		-- "label[4,0.5;"..F(minetest.colorize("#313131", S("Crafting"))) .. "]" ..
+		-- "list[current_player;craft;4,1;2,2]" ..
+		-- "list[current_player;craftpreview;7,1.5;1,1;]" ..
+		-- mcl_formspec.get_itemslot_bg(0, 4.5, 9, 3) ..
+		mcl_formspec.get_itemslot_bg(0, 4, slots, 1) .. "]"
+		-- mcl_formspec.get_itemslot_bg(4, 1,2, 2) ..
+		-- mcl_formspec.get_itemslot_bg(7, 1.5, 1, 1) ..
 
 		-- Crafting guide button
-		"image_button[4.5,3;1,1;craftguide_book.png;__mcl_craftguide;]" ..
-		"tooltip[__mcl_craftguide;"..F(S("Recipe book")) .. "]"
+		-- "image_button[4.5,3;1,1;craftguide_book.png;__mcl_craftguide;]" ..
+		-- "tooltip[__mcl_craftguide;"..F(S("Recipe book")) .. "]"
 
 		-- Help button
 		-- "image_button[8,3;1,1;doc_button_icon_lores.png;__mcl_doc;]" ..
@@ -113,7 +115,7 @@ local function set_inventory(player)
 
 	form = form ..
 		-- Achievements button
-		"image_button[7,3;1,1;mcl_achievements_button.png;__mcl_achievements;]" ..
+		"image_button[3,0;1,1;mcl_achievements_button.png;__mcl_achievements;]" ..
 		"tooltip[__mcl_achievements;" .. F(S("Advancements")) .. "]" ..
 
 		-- For shortcuts
@@ -157,8 +159,8 @@ minetest.register_on_joinplayer(function(player)
 	--set hotbar size
 	player:hud_set_hotbar_itemcount(1)
 	--don't add hotbar images
-	-- player:hud_set_hotbar_image("blank.png")
-	-- player:hud_set_hotbar_selected_image("blank.png")
+	-- player:hud_set_hotbar_image("mcl_inventory_hotbar.png")
+	-- player:hud_set_hotbar_selected_image("mcl_inventory_hotbar.png")
 	player:hud_set_flags({hotbar = false})
 
 	-- In Creative Mode, the initial inventory setup is handled in creative.lua
@@ -206,19 +208,18 @@ local gamemodes = {
 function mcl_inventory.player_set_gamemode(p,g)
 	local m = p:get_meta()
 	m:set_string("gamemode",g)
-	if g == "survival" then
-		 mcl_experience.setup_hud(p)
-		 mcl_experience.update(p)
-	elseif g == "creative" then
-		 mcl_experience.remove_hud(p)
-	end
+	-- if g == "survival" then
+	-- 	 mcl_experience.remove_hud(p)
+	-- elseif g == "creative" then
+	-- 	 mcl_experience.remove_hud(p)
+	-- end
 	mcl_meshhand.update_player(p)
 	set_inventory(p)
 end
 
 minetest.register_chatcommand("gamemode",{
 	params = S("[<gamemode>] [<player>]"),
-	description = S("Change gamemode (survival/creative) for yourself or player"),
+	description = S("Change gamemode for yourself or player"),
 	privs = { server = true },
 	func = function(n,param)
 		-- Full input validation ( just for @erlehmann <3 )

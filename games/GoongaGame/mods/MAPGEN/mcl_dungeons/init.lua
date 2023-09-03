@@ -375,7 +375,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 			facedir = dir_to_facedir(vector_subtract(pos, face_to))
 		end
 
-		set_node(pos, {name="mcl_chests:chest", param2=facedir})
+		set_node(pos, {name="mcl_barrels:barrel_closed"})
 		local meta = get_meta(pos)
 		minetest.log("action", "[mcl_dungeons] Filling chest " .. tostring(c) .. " at " .. minetest.pos_to_string(pos))
 		mcl_loot.fill_inventory(meta:get_inventory(), "main", mcl_loot.get_multi_loot(loottable, pr), pr)

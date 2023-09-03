@@ -7,16 +7,16 @@ mcl_structures = {}
 dofile(modpath.."/api.lua")
 -- dofile(modpath.."/shipwrecks.lua")
 -- dofile(modpath.."/desert_temple.lua")
-dofile(modpath.."/jungle_temple.lua")
+-- dofile(modpath.."/jungle_temple.lua")
 -- dofile(modpath.."/ocean_ruins.lua")
 -- dofile(modpath.."/witch_hut.lua")
-dofile(modpath.."/igloo.lua")
+-- dofile(modpath.."/igloo.lua")
 -- dofile(modpath.."/woodland_mansion.lua")
 -- dofile(modpath.."/ruined_portal.lua")
 -- dofile(modpath.."/geode.lua")
 -- dofile(modpath.."/pillager_outpost.lua")
-dofile(modpath.."/end_spawn.lua")
-dofile(modpath.."/end_city.lua")
+-- dofile(modpath.."/end_spawn.lua")
+-- dofile(modpath.."/end_city.lua")
 
 
 mcl_structures.register_structure("desert_well",{
@@ -67,13 +67,13 @@ mcl_structures.register_structure("boulder",{
 	},
 },true) --is spawned as a normal decoration. this is just for /spawnstruct
 
-mcl_structures.register_structure("ice_spike_small",{
-	filenames = { modpath.."/schematics/mcl_structures_ice_spike_small.mts"	},
-},true) --is spawned as a normal decoration. this is just for /spawnstruct
-mcl_structures.register_structure("ice_spike_large",{
-	sidelen = 6,
-	filenames = { modpath.."/schematics/mcl_structures_ice_spike_large.mts"	},
-},true) --is spawned as a normal decoration. this is just for /spawnstruct
+-- mcl_structures.register_structure("ice_spike_small",{
+-- 	filenames = { modpath.."/schematics/mcl_structures_ice_spike_small.mts"	},
+-- },true) --is spawned as a normal decoration. this is just for /spawnstruct
+-- mcl_structures.register_structure("ice_spike_large",{
+-- 	sidelen = 6,
+-- 	filenames = { modpath.."/schematics/mcl_structures_ice_spike_large.mts"	},
+-- },true) --is spawned as a normal decoration. this is just for /spawnstruct
 
 -- Debug command
 local function dir_to_rotation(dir)

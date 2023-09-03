@@ -127,7 +127,7 @@ local function init_globals()
 	tv_main:set_fixed_size(false)
 
 	ui.set_default("maintab")
-	check_new_version()
+	-- check_new_version()
 	tv_main:show()
 	ui.update()
 end

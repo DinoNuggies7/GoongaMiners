@@ -92,9 +92,8 @@ minetest.register_globalstep(function(dtime)
 		if player:get_player_control().aux1 then swapped = true else swapped = false end
 		if offhand_item1 ~= "" and item1 then
 			local item_texture = item1.inventory_image .. "^[resize:" .. max_offhand_px .. "x" .. max_offhand_px
-			local item_texture2 = item2.inventory_image .. "^[resize:" .. max_offhand_px .. "x" .. max_offhand_px
-			local position = {x = 0.7395, y = 1}
-			local offset = {x = -320, y = -32}
+			local position = {x = 0.5, y = 1}
+			local offset = {x = 160, y = -32}
 
 			if not offhand_hud.slot1 then
 				offhand_hud.slot1 = player:hud_add({
@@ -124,7 +123,7 @@ minetest.register_globalstep(function(dtime)
 					offhand_hud.wear_bar_bg1 = player:hud_add({
 						hud_elem_type = "image",
 						position = position,
-						offset = {x = -320, y = -13},
+						offset = {x = 160, y = -13},
 						scale = {x = 40, y = 3},
 						text = texture,
 						z_index = 4,
@@ -132,7 +131,7 @@ minetest.register_globalstep(function(dtime)
 					offhand_hud.wear_bar1 = player:hud_add({
 						hud_elem_type = "image",
 						position = position,
-						offset = {x = -320, y = -13},
+						offset = {x = 160, y = -13},
 						scale = {x = 10, y = 3},
 						text = texture,
 						z_index = 6,
@@ -145,7 +144,7 @@ minetest.register_globalstep(function(dtime)
 				offhand_hud.item_count1 = player:hud_add({
 					hud_elem_type = "text",
 					position = position,
-					offset = {x = -298, y = -18},
+					offset = {x = 182, y = -18},
 					scale = {x = 1, y = 1},
 					alignment = {x = -1, y = 0},
 					text = offhand_get_count(player, 1),
@@ -175,18 +174,17 @@ minetest.register_globalstep(function(dtime)
 				end
 			end
 
-		elseif offhand_hud.slot1 then
-			for index, _ in pairs(mcl_offhand[player].hud) do
-				if index:sub(-1) == "1" then
-					remove_hud(player, index)
-				end
-			end
+		else
+			remove_hud(player, "item1")
+			remove_hud(player, "item_count1")
+			remove_hud(player, "wear_bar1")
+			remove_hud(player, "wear_bar_bg1")
 		end
 
 		if offhand_item2 ~= "" and item2 then
 			local item_texture = item2.inventory_image .. "^[resize:" .. max_offhand_px .. "x" .. max_offhand_px
-			local position = {x = 0.5955, y = 1}
-			local offset = {x = -320, y = -32}
+			local position = {x = 0.5, y = 1}
+			local offset = {x = -160, y = -32}
 
 			if not offhand_hud.slot2 then
 				offhand_hud.slot2 = player:hud_add({
@@ -216,7 +214,7 @@ minetest.register_globalstep(function(dtime)
 					offhand_hud.wear_bar_bg2 = player:hud_add({
 						hud_elem_type = "image",
 						position = position,
-						offset = {x = -320, y = -13},
+						offset = {x = -160, y = -13},
 						scale = {x = 40, y = 3},
 						text = texture,
 						z_index = 5,
@@ -224,7 +222,7 @@ minetest.register_globalstep(function(dtime)
 					offhand_hud.wear_bar2 = player:hud_add({
 						hud_elem_type = "image",
 						position = position,
-						offset = {x = -320, y = -13},
+						offset = {x = -160, y = -13},
 						scale = {x = 10, y = 3},
 						text = texture,
 						z_index = 7,
@@ -237,7 +235,7 @@ minetest.register_globalstep(function(dtime)
 				offhand_hud.item_count2 = player:hud_add({
 					hud_elem_type = "text",
 					position = position,
-					offset = {x = -298, y = -18},
+					offset = {x = -138, y = -18},
 					scale = {x = 1, y = 1},
 					alignment = {x = -1, y = 0},
 					text = offhand_get_count(player, 2),
@@ -267,12 +265,11 @@ minetest.register_globalstep(function(dtime)
 				end
 			end
 
-		elseif offhand_hud.slot2 then
-			for index, _ in pairs(mcl_offhand[player].hud) do
-				if index:sub(-1) == "2" then
-					remove_hud(player, index)
-				end
-			end
+		else
+			remove_hud(player, "item2")
+			remove_hud(player, "item_count2")
+			remove_hud(player, "wear_bar2")
+			remove_hud(player, "wear_bar_bg2")
 		end
 	end
 end)

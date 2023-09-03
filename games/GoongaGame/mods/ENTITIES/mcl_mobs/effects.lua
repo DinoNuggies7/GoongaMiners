@@ -182,12 +182,12 @@ function mob_class:damage_effect(damage)
 		local texture = "mobs_blood.png"
 		-- full heart damage (one particle for each 2 HP damage)
 		if amount_large > 0 then
-			mcl_mobs.effect(pos, amount_large, texture, 2, 2, 1.75, 0, nil, true)
+			mcl_mobs.effect(pos, amount_large, texture, 2, 2, 1.75, -20, nil, true)
 		end
 		-- half heart damage (one additional particle if damage is an odd number)
 		if amount_small > 0 then
 			-- TODO: Use "half heart"
-			mcl_mobs.effect(pos, amount_small, texture, 1, 1, 1.75, 0, nil, true)
+			mcl_mobs.effect(pos, amount_small, texture, 1, 1, 1.75, -20, nil, true)
 		end
 	end
 end

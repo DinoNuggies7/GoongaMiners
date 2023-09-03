@@ -119,7 +119,7 @@
 
 #    Fullscreen mode.
 #    type: bool
-# fullscreen = false
+# fullscreen = true
 
 #    Open the pause menu when the window's focus is lost. Does not pause if a formspec is
 #    open.
@@ -289,7 +289,7 @@
 
 #    Whether to fog out the end of the visible area.
 #    type: bool
-# enable_fog = true
+# enable_fog = false
 
 #    Make fog and sky colors depend on daytime (dawn/sunset) and view direction.
 #    type: bool
@@ -297,7 +297,7 @@
 
 #    Fraction of the visible distance at which fog starts to be rendered
 #    type: float min: 0 max: 0.99
-# fog_start = 0.4
+# fog_start = 0.2
 
 ### Clouds
 
@@ -3298,12 +3298,12 @@
 #    Key for opening the inventory.
 #    See https://github.com/minetest/irrlicht/blob/master/include/Keycodes.h
 #    type: key
-# keymap_inventory = KEY_KEY_E
+# keymap_inventory = KEY_KEY_C
 
 #    Key for moving fast in fast mode.
 #    See https://github.com/minetest/irrlicht/blob/master/include/Keycodes.h
 #    type: key
-# keymap_aux1 = KEY_KEY_R
+# keymap_aux1 = KEY_KEY_E
 
 #    Key for opening the chat window.
 #    See https://github.com/minetest/irrlicht/blob/master/include/Keycodes.h

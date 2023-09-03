@@ -82,7 +82,7 @@ void set_default_settings()
 	settings->setDefault("keymap_place", "KEY_RBUTTON");
 	settings->setDefault("keymap_drop", "KEY_KEY_Q");
 	settings->setDefault("keymap_zoom", "KEY_KEY_Z");
-	settings->setDefault("keymap_inventory", "KEY_KEY_I");
+	settings->setDefault("keymap_inventory", "KEY_KEY_C");
 	settings->setDefault("keymap_aux1", "KEY_KEY_E");
 	settings->setDefault("keymap_chat", "KEY_KEY_T");
 	settings->setDefault("keymap_cmd", "/");
@@ -116,7 +116,7 @@ void set_default_settings()
 #endif
 	settings->setDefault("keymap_toggle_debug", "KEY_F5");
 	settings->setDefault("keymap_toggle_profiler", "KEY_F6");
-	settings->setDefault("keymap_camera_mode", "KEY_KEY_C");
+	settings->setDefault("keymap_camera_mode", "KEY_TAB");
 	settings->setDefault("keymap_screenshot", "KEY_F12");
 	settings->setDefault("keymap_increase_viewing_range_min", "+");
 	settings->setDefault("keymap_decrease_viewing_range_min", "-");
@@ -190,7 +190,7 @@ void set_default_settings()
 	settings->setDefault("screen_h", "600");
 	settings->setDefault("window_maximized", "false");
 	settings->setDefault("autosave_screensize", "true");
-	settings->setDefault("fullscreen", "false");
+	settings->setDefault("fullscreen", "true");
 	settings->setDefault("vsync", "false");
 	settings->setDefault("fov", "72");
 	settings->setDefault("leaves_style", "fancy");

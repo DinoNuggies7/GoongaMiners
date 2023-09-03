@@ -181,10 +181,10 @@ minetest.register_globalstep(function(_)
 						end
 					end
 
-				elseif not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "mcl_experience:orb" then
-					local entity = object:get_luaentity()
-					entity.collector = player:get_player_name()
-					entity.collected = true
+				-- elseif not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "mcl_experience:orb" then
+				-- 	local entity = object:get_luaentity()
+				-- 	entity.collector = player:get_player_name()
+				-- 	entity.collected = true
 				end
 			end
 
@@ -323,12 +323,12 @@ function minetest.handle_node_drops(pos, drops, digger)
 		end
 	end
 
-	if digger and mcl_experience.throw_xp and not silk_touch_drop then
-		local experience_amount = minetest.get_item_group(dug_node.name, "xp")
-		if experience_amount > 0 then
-			mcl_experience.throw_xp(pos, experience_amount)
-		end
-	end
+	-- if digger and mcl_experience.throw_xp and not silk_touch_drop then
+	-- 	local experience_amount = minetest.get_item_group(dug_node.name, "xp")
+	-- 	if experience_amount > 0 then
+	-- 		mcl_experience.throw_xp(pos, experience_amount)
+	-- 	end
+	-- end
 
 	for _, item in ipairs(drops) do
 		local count

@@ -1,6 +1,0 @@
-# textdomain: mcl_beacons
-Beacon=
-Beacon:=
-Primary Power:=
-Inventory:=
-

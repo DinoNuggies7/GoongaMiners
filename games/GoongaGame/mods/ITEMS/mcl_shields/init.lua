@@ -106,9 +106,9 @@ minetest.register_entity("mcl_shields:shield_entity", {
 	end,
 })
 
-for _, e in pairs(mcl_shields.enchantments) do
-	mcl_enchanting.enchantments[e].secondary.shield = true
-end
+-- for _, e in pairs(mcl_shields.enchantments) do
+-- 	mcl_enchanting.enchantments[e].secondary.shield = true
+-- end
 
 function mcl_shields.is_blocking(obj)
 	if not obj:is_player() then return end
@@ -427,90 +427,90 @@ minetest.register_craft({
 	}
 })
 
-for _, colortab in pairs(mcl_banners.colors) do
-	local color = colortab[1]
-	minetest.register_tool("mcl_shields:shield_" .. color, {
-		description = S(colortab[6] .. " Shield"),
-		_doc_items_longdesc = S("A shield is a tool used for protecting the player against attacks."),
-		inventory_image = "mcl_shield.png^(mcl_shield_item_overlay.png^[colorize:" .. colortab[4] ..")",
-		stack_max = 1,
-		groups = {
-			shield = 1,
-			weapon = 1,
-			enchantability = -1,
-			not_in_creative_inventory = 1,
-			offhand_item = 1,
-		},
-		sound = {breaks = "default_tool_breaks"},
-		_repair_material = "group:wood",
-		wield_scale = vector.new(2, 2, 2),
-		_shield_color = colortab[4],
-		_mcl_wieldview_item = "",
-	})
+-- for _, colortab in pairs(mcl_banners.colors) do
+-- 	local color = colortab[1]
+-- 	minetest.register_tool("mcl_shields:shield_" .. color, {
+-- 		description = S(colortab[6] .. " Shield"),
+-- 		_doc_items_longdesc = S("A shield is a tool used for protecting the player against attacks."),
+-- 		inventory_image = "mcl_shield.png^(mcl_shield_item_overlay.png^[colorize:" .. colortab[4] ..")",
+-- 		stack_max = 1,
+-- 		groups = {
+-- 			shield = 1,
+-- 			weapon = 1,
+-- 			enchantability = -1,
+-- 			not_in_creative_inventory = 1,
+-- 			offhand_item = 1,
+-- 		},
+-- 		sound = {breaks = "default_tool_breaks"},
+-- 		_repair_material = "group:wood",
+-- 		wield_scale = vector.new(2, 2, 2),
+-- 		_shield_color = colortab[4],
+-- 		_mcl_wieldview_item = "",
+-- 	})
 
-	local banner = "mcl_banners:banner_item_" .. color
-	minetest.register_craft({
-		type = "shapeless",
-		output = "mcl_shields:shield_" .. color,
-		recipe = {"mcl_shields:shield", banner},
-	})
-	minetest.register_craft({
-		type = "shapeless",
-		output = "mcl_shields:shield_" .. color .. "_enchanted",
-		recipe = {"mcl_shields:shield_enchanted", banner},
-	})
-end
+-- 	local banner = "mcl_banners:banner_item_" .. color
+-- 	minetest.register_craft({
+-- 		type = "shapeless",
+-- 		output = "mcl_shields:shield_" .. color,
+-- 		recipe = {"mcl_shields:shield", banner},
+-- 	})
+-- 	minetest.register_craft({
+-- 		type = "shapeless",
+-- 		output = "mcl_shields:shield_" .. color .. "_enchanted",
+-- 		recipe = {"mcl_shields:shield_enchanted", banner},
+-- 	})
+-- end
 
-local function to_shield_texture(banner_texture)
-	return banner_texture
-	:gsub("mcl_banners_base_inverted.png", "mcl_shield_base_nopattern.png^mcl_shield_pattern_base.png")
-	:gsub("mcl_banners_banner_base.png", "mcl_shield_base_nopattern.png^mcl_shield_pattern_base.png")
-	:gsub("mcl_banners_base", "mcl_shield_pattern_base")
-	:gsub("mcl_banners", "mcl_shield_pattern")
-end
+-- local function to_shield_texture(banner_texture)
+-- 	return banner_texture
+-- 	:gsub("mcl_banners_base_inverted.png", "mcl_shield_base_nopattern.png^mcl_shield_pattern_base.png")
+-- 	:gsub("mcl_banners_banner_base.png", "mcl_shield_base_nopattern.png^mcl_shield_pattern_base.png")
+-- 	:gsub("mcl_banners_base", "mcl_shield_pattern_base")
+-- 	:gsub("mcl_banners", "mcl_shield_pattern")
+-- end
 
-local function craft_banner_on_shield(itemstack, player, old_craft_grid, craft_inv)
-	if not string.find(itemstack:get_name(), "mcl_shields:shield_") then
-		return itemstack
-	end
+-- local function craft_banner_on_shield(itemstack, player, old_craft_grid, craft_inv)
+-- 	if not string.find(itemstack:get_name(), "mcl_shields:shield_") then
+-- 		return itemstack
+-- 	end
 
-	local shield_stack
-	for i = 1, player:get_inventory():get_size("craft") do
-		local stack = old_craft_grid[i]
-		local name = stack:get_name()
-		if minetest.get_item_group(name, "shield") then
-			shield_stack = stack
-			break
-		end
-	end
+-- 	local shield_stack
+-- 	for i = 1, player:get_inventory():get_size("craft") do
+-- 		local stack = old_craft_grid[i]
+-- 		local name = stack:get_name()
+-- 		if minetest.get_item_group(name, "shield") then
+-- 			shield_stack = stack
+-- 			break
+-- 		end
+-- 	end
 
-	for i = 1, player:get_inventory():get_size("craft") do
-		local banner_stack = old_craft_grid[i]
-		local banner_name = banner_stack:get_name()
-		if string.find(banner_name, "mcl_banners:banner") and shield_stack then
-			local banner_meta = banner_stack:get_meta()
-			local layers_meta = banner_meta:get_string("layers")
-			local new_shield_meta = itemstack:get_meta()
-			if layers_meta ~= "" then
-				local color = mcl_banners.color_reverse(banner_name)
-				local layers = minetest.deserialize(layers_meta)
-				local texture = mcl_banners.make_banner_texture(color, layers)
-				new_shield_meta:set_string("description", mcl_banners.make_advanced_banner_description(itemstack:get_description(), layers))
-				new_shield_meta:set_string("mcl_shields:shield_custom_pattern_texture", to_shield_texture(texture))
-			end
-			itemstack:set_wear(shield_stack:get_wear())
-			break
-		end
-	end
-end
+-- 	for i = 1, player:get_inventory():get_size("craft") do
+-- 		local banner_stack = old_craft_grid[i]
+-- 		local banner_name = banner_stack:get_name()
+-- 		if string.find(banner_name, "mcl_banners:banner") and shield_stack then
+-- 			local banner_meta = banner_stack:get_meta()
+-- 			local layers_meta = banner_meta:get_string("layers")
+-- 			local new_shield_meta = itemstack:get_meta()
+-- 			if layers_meta ~= "" then
+-- 				local color = mcl_banners.color_reverse(banner_name)
+-- 				local layers = minetest.deserialize(layers_meta)
+-- 				local texture = mcl_banners.make_banner_texture(color, layers)
+-- 				new_shield_meta:set_string("description", mcl_banners.make_advanced_banner_description(itemstack:get_description(), layers))
+-- 				new_shield_meta:set_string("mcl_shields:shield_custom_pattern_texture", to_shield_texture(texture))
+-- 			end
+-- 			itemstack:set_wear(shield_stack:get_wear())
+-- 			break
+-- 		end
+-- 	end
+-- end
 
-minetest.register_craft_predict(function(itemstack, player, old_craft_grid, craft_inv)
-	return craft_banner_on_shield(itemstack, player, old_craft_grid, craft_inv)
-end)
+-- minetest.register_craft_predict(function(itemstack, player, old_craft_grid, craft_inv)
+-- 	return craft_banner_on_shield(itemstack, player, old_craft_grid, craft_inv)
+-- end)
 
-minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
-	return craft_banner_on_shield(itemstack, player, old_craft_grid, craft_inv)
-end)
+-- minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
+-- 	return craft_banner_on_shield(itemstack, player, old_craft_grid, craft_inv)
+-- end)
 
 minetest.register_on_joinplayer(function(player)
 	mcl_shields.players[player] = {

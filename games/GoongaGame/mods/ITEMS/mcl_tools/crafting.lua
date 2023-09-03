@@ -1,49 +1,49 @@
-minetest.register_craft({
-	output = "mcl_core:vine",
-	recipe = {
-		{"group:leaves", ""},
-		{"group:leaves", ""}
-	},
-	recipe = {
-		{"", "group:leaves"},
-		{"", "group:leaves"}
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_core:vine",
+-- 	recipe = {
+-- 		{"group:leaves", ""},
+-- 		{"group:leaves", ""}
+-- 	},
+-- 	recipe = {
+-- 		{"", "group:leaves"},
+-- 		{"", "group:leaves"}
+-- 	}
+-- })
 
-minetest.register_craft({
-	output = "mcl_tools:crowbar",
-	recipe = {
-		{"", "", "mcl_core:iron_ingot"},
-		{"", "mcl_core:iron_ingot", ""},
-		{"mcl_core:iron_ingot", "", ""}
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_tools:crowbar",
+-- 	recipe = {
+-- 		{"", "", "mcl_core:iron_ingot"},
+-- 		{"", "mcl_core:iron_ingot", ""},
+-- 		{"mcl_core:iron_ingot", "", ""}
+-- 	}
+-- })
 
-minetest.register_craft({
-	output = "mcl_tools:flint_knife",
-	recipe = {
-		{"", "mcl_core:flint"},
-		{"mcl_core:stick", ""}
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_tools:flint_knife",
+-- 	recipe = {
+-- 		{"", "mcl_core:flint"},
+-- 		{"mcl_core:stick", ""}
+-- 	}
+-- })
 
-minetest.register_craft({
-	output = "mcl_tools:rock_axe",
-	recipe = {
-		{"mcl_core:rock_medium", "mcl_core:vine", ""},
-		{"mcl_core:vine", "mcl_core:stick", ""},
-		{"", "mcl_core:stick", ""}
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_tools:rock_axe",
+-- 	recipe = {
+-- 		{"mcl_core:rock_medium", "mcl_core:vine", ""},
+-- 		{"mcl_core:vine", "mcl_core:stick", ""},
+-- 		{"", "mcl_core:stick", ""}
+-- 	}
+-- })
 
-minetest.register_craft({
-	output = "mcl_tools:rock_shovel",
-	recipe = {
-		{"mcl_core:vine", "mcl_core:rock_medium", "mcl_core:vine"},
-		{"", "mcl_core:stick", ""},
-		{"", "mcl_core:stick", ""}
-	}
-})
+-- minetest.register_craft({
+-- 	output = "mcl_tools:rock_shovel",
+-- 	recipe = {
+-- 		{"mcl_core:vine", "mcl_core:rock_medium", "mcl_core:vine"},
+-- 		{"", "mcl_core:stick", ""},
+-- 		{"", "mcl_core:stick", ""}
+-- 	}
+-- })
 
 -- minetest.register_craft({
 -- 	output = "mcl_tools:pick_wood",

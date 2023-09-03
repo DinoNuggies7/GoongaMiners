@@ -362,54 +362,54 @@ void LocalPlayer::move(f32 dtime, Environment *env, f32 pos_max_d,
 	/*
 		If sneaking, keep on top of last walked node and don't fall off
 	*/
-	if (could_sneak && m_sneak_node_exists) {
-		const v3f sn_f = intToFloat(m_sneak_node, BS);
-		const v3f bmin = sn_f + m_sneak_node_bb_top.MinEdge;
-		const v3f bmax = sn_f + m_sneak_node_bb_top.MaxEdge;
-		const v3f old_pos = position;
-		const v3f old_speed = m_speed;
-		f32 y_diff = bmax.Y - position.Y;
-		m_standing_node = m_sneak_node;
+	// if (could_sneak && m_sneak_node_exists) {
+	// 	const v3f sn_f = intToFloat(m_sneak_node, BS);
+	// 	const v3f bmin = sn_f + m_sneak_node_bb_top.MinEdge;
+	// 	const v3f bmax = sn_f + m_sneak_node_bb_top.MaxEdge;
+	// 	const v3f old_pos = position;
+	// 	const v3f old_speed = m_speed;
+	// 	f32 y_diff = bmax.Y - position.Y;
+	// 	m_standing_node = m_sneak_node;
 
-		// (BS * 0.6f) is the basic stepheight while standing on ground
-		if (y_diff < BS * 0.6f) {
-			// Only center player when they're on the node
-			position.X = rangelim(position.X,
-				bmin.X - sneak_max.X, bmax.X + sneak_max.X);
-			position.Z = rangelim(position.Z,
-				bmin.Z - sneak_max.Z, bmax.Z + sneak_max.Z);
+	// 	// (BS * 0.6f) is the basic stepheight while standing on ground
+	// 	if (y_diff < BS * 0.6f) {
+	// 		// Only center player when they're on the node
+	// 		position.X = rangelim(position.X,
+	// 			bmin.X - sneak_max.X, bmax.X + sneak_max.X);
+	// 		position.Z = rangelim(position.Z,
+	// 			bmin.Z - sneak_max.Z, bmax.Z + sneak_max.Z);
 
-			if (position.X != old_pos.X)
-				m_speed.X = 0.0f;
-			if (position.Z != old_pos.Z)
-				m_speed.Z = 0.0f;
-		}
+	// 		if (position.X != old_pos.X)
+	// 			m_speed.X = 0.0f;
+	// 		if (position.Z != old_pos.Z)
+	// 			m_speed.Z = 0.0f;
+	// 	}
 
-		if (y_diff > 0 && m_speed.Y <= 0.0f &&
-				(physics_override.sneak_glitch || y_diff < BS * 0.6f)) {
-			// Move player to the maximal height when falling or when
-			// the ledge is climbed on the next step.
+	// 	if (y_diff > 0 && m_speed.Y <= 0.0f &&
+	// 			(physics_override.sneak_glitch || y_diff < BS * 0.6f)) {
+	// 		// Move player to the maximal height when falling or when
+	// 		// the ledge is climbed on the next step.
 
-			// Smoothen the movement (based on 'position.Y = bmax.Y')
-			position.Y += y_diff * dtime * 22.0f + BS * 0.01f;
-			position.Y = std::min(position.Y, bmax.Y);
-			m_speed.Y = 0.0f;
-		}
+	// 		// Smoothen the movement (based on 'position.Y = bmax.Y')
+	// 		position.Y += y_diff * dtime * 22.0f + BS * 0.01f;
+	// 		position.Y = std::min(position.Y, bmax.Y);
+	// 		m_speed.Y = 0.0f;
+	// 	}
 
-		// Allow jumping on node edges while sneaking
-		if (m_speed.Y == 0.0f || m_sneak_ladder_detected)
-			sneak_can_jump = true;
+	// 	// Allow jumping on node edges while sneaking
+	// 	if (m_speed.Y == 0.0f || m_sneak_ladder_detected)
+	// 		sneak_can_jump = true;
 
-		if (collision_info &&
-				m_speed.Y - old_speed.Y > BS) {
-			// Collide with sneak node, report fall damage
-			CollisionInfo sn_info;
-			sn_info.node_p = m_sneak_node;
-			sn_info.old_speed = old_speed;
-			sn_info.new_speed = m_speed;
-			collision_info->push_back(sn_info);
-		}
-	}
+	// 	if (collision_info &&
+	// 			m_speed.Y - old_speed.Y > BS) {
+	// 		// Collide with sneak node, report fall damage
+	// 		CollisionInfo sn_info;
+	// 		sn_info.node_p = m_sneak_node;
+	// 		sn_info.old_speed = old_speed;
+	// 		sn_info.new_speed = m_speed;
+	// 		collision_info->push_back(sn_info);
+	// 	}
+	// }
 
 	/*
 		Find the next sneak node if necessary

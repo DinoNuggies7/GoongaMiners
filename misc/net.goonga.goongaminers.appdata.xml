@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>net.goonga.goongaminers.desktop</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>LGPL-2.1+ and CC-BY-SA-3.0 and MIT and Apache-2.0</project_license>
+	<content_rating type="oars-1.0">
+		<content_attribute id="violence-cartoon">mild</content_attribute>
+		<content_attribute id="violence-fantasy">mild</content_attribute>
+		<content_attribute id="social-chat">intense</content_attribute>
+		<content_attribute id="social-info">mild</content_attribute>
+	</content_rating>
+	<name>GoongaMiners</name>
+	<summary>Monke Game</summary>
+	<description>
+		<p>
+			GoongaMiners is a game built with the Minetest engine with the MineClone2 subgame.
+		</p>
+	</description>
+<!-- 	<screenshots>
+		<screenshot type="default">
+			<image>http://www.minetest.net/media/gallery/1.jpg</image>
+		</screenshot>
+		<screenshot>
+			<image>http://www.minetest.net/media/gallery/3.jpg</image>
+		</screenshot>
+		<screenshot>
+			<image>http://www.minetest.net/media/gallery/5.jpg</image>
+		</screenshot>
+	</screenshots> -->
+	<keywords>
+		<keyword>sandbox</keyword>
+		<keyword>world</keyword>
+		<keyword>mining</keyword>
+		<keyword>multiplayer</keyword>
+	</keywords>
+<!-- 	<url type="homepage">https://www.minetest.net</url>
+	<url type="bugtracker">https://www.minetest.net/development/#reporting-issues</url>
+	<url type="translate">https://dev.minetest.net/Translation</url>
+	<url type="donation">https://www.minetest.net/development/#donate</url>
+	<url type="faq">https://wiki.minetest.net/FAQ</url>
+	<url type="help">https://wiki.minetest.net</url>
+	<url type="vcs-browser">https://github.com/minetest/minetest</url>
+	<url type="contribute">https://www.minetest.net/get-involved/</url> -->
+	<provides>
+		<binary>GoongaMiners</binary>
+	</provides>
+	<releases>
+		<release date="2023-04-08" version="1.0.0"/>
+	</releases>
+</component>

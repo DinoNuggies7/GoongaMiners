@@ -73,9 +73,9 @@ local c_sand = minetest.get_content_id("mcl_core:sand")
 local c_void = minetest.get_content_id("mcl_core:void")
 local c_lava = minetest.get_content_id("mcl_core:lava_source")
 local c_water = minetest.get_content_id("mcl_core:water_source")
-local c_soul_sand = minetest.get_content_id("mcl_nether:soul_sand")
-local c_netherrack = minetest.get_content_id("mcl_nether:netherrack")
-local c_nether_lava = minetest.get_content_id("mcl_nether:nether_lava_source")
+-- local c_soul_sand = minetest.get_content_id("mcl_nether:soul_sand")
+-- local c_netherrack = minetest.get_content_id("mcl_nether:netherrack")
+-- local c_nether_lava = minetest.get_content_id("mcl_nether:nether_lava_source")
 --local c_end_stone = minetest.get_content_id("mcl_end:end_stone")
 local c_realm_barrier = minetest.get_content_id("mcl_core:realm_barrier")
 local c_top_snow = minetest.get_content_id("mcl_core:snow")
@@ -83,10 +83,10 @@ local c_snow_block = minetest.get_content_id("mcl_core:snowblock")
 local c_clay = minetest.get_content_id("mcl_core:clay")
 local c_leaves = minetest.get_content_id("mcl_core:leaves")
 local c_jungleleaves = minetest.get_content_id("mcl_core:jungleleaves")
---local c_jungletree = minetest.get_content_id("mcl_core:jungletree")
-local c_cocoa_1 = minetest.get_content_id("mcl_cocoas:cocoa_1")
-local c_cocoa_2 = minetest.get_content_id("mcl_cocoas:cocoa_2")
-local c_cocoa_3 = minetest.get_content_id("mcl_cocoas:cocoa_3")
+local c_jungletree = minetest.get_content_id("mcl_core:jungletree")
+-- local c_cocoa_1 = minetest.get_content_id("mcl_cocoas:cocoa_1")
+-- local c_cocoa_2 = minetest.get_content_id("mcl_cocoas:cocoa_2")
+-- local c_cocoa_3 = minetest.get_content_id("mcl_cocoas:cocoa_3")
 local c_vine = minetest.get_content_id("mcl_core:vine")
 local c_air = minetest.CONTENT_AIR
 
@@ -205,8 +205,8 @@ if mcl_vars.mg_bedrock_is_rough then
 		-- This code assumes a bedrock height of 5 layers.
 
 		local diff = mcl_vars.mg_bedrock_overworld_max - y -- Overworld bedrock
-		local ndiff1 = mcl_vars.mg_bedrock_nether_bottom_max - y -- Nether bedrock, bottom
-		local ndiff2 = mcl_vars.mg_bedrock_nether_top_max - y -- Nether bedrock, ceiling
+		-- local ndiff1 = mcl_vars.mg_bedrock_nether_bottom_max - y -- Nether bedrock, bottom
+		-- local ndiff2 = mcl_vars.mg_bedrock_nether_top_max - y -- Nether bedrock, ceiling
 
 		local top
 		if diff == 0 or ndiff1 == 0 or ndiff2 == 4 then
@@ -297,51 +297,51 @@ local function world_structure(vm, data, data2, emin, emax, area, minp, maxp, bl
 	local pr = PseudoRandom(blockseed)
 
 	-- The Void below the Nether:
-	lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mapgen_edge_min                     , mcl_vars.mg_nether_min                     -1, minp, maxp, lvm_used, pr)
+	-- lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mapgen_edge_min                     , mcl_vars.mg_nether_min                     -1, minp, maxp, lvm_used, pr)
 
 	-- [[ THE NETHER:					mcl_vars.mg_nether_min			       mcl_vars.mg_nether_max							]]
 
 	-- The Air on the Nether roof, https://git.minetest.land/MineClone2/MineClone2/issues/1186
-	lvm_used = set_layers(data, area, c_air		 , nil, mcl_vars.mg_nether_max			   +1, mcl_vars.mg_nether_max + 128                 , minp, maxp, lvm_used, pr)
-	-- The Void above the Nether below the End:
-	lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mg_nether_max + 128               +1, mcl_vars.mg_end_min                        -1, minp, maxp, lvm_used, pr)
+	-- lvm_used = set_layers(data, area, c_air		 , nil, mcl_vars.mg_nether_max			   +1, mcl_vars.mg_nether_max + 128                 , minp, maxp, lvm_used, pr)
+	-- -- The Void above the Nether below the End:
+	-- lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mg_nether_max + 128               +1, mcl_vars.mg_end_min                        -1, minp, maxp, lvm_used, pr)
 
 	-- [[ THE END:						mcl_vars.mg_end_min			       mcl_vars.mg_end_max							]]
 
 	-- The Void above the End below the Realm barrier:
-	lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mg_end_max                        +1, mcl_vars.mg_realm_barrier_overworld_end_min-1, minp, maxp, lvm_used, pr)
-	-- Realm barrier between the Overworld void and the End
-	lvm_used = set_layers(data, area, c_realm_barrier, nil, mcl_vars.mg_realm_barrier_overworld_end_min  , mcl_vars.mg_realm_barrier_overworld_end_max  , minp, maxp, lvm_used, pr)
-	-- The Void above Realm barrier below the Overworld:
-	lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mg_realm_barrier_overworld_end_max+1, mcl_vars.mg_overworld_min                  -1, minp, maxp, lvm_used, pr)
+	-- lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mg_end_max                        +1, mcl_vars.mg_realm_barrier_overworld_end_min-1, minp, maxp, lvm_used, pr)
+	-- -- Realm barrier between the Overworld void and the End
+	-- lvm_used = set_layers(data, area, c_realm_barrier, nil, mcl_vars.mg_realm_barrier_overworld_end_min  , mcl_vars.mg_realm_barrier_overworld_end_max  , minp, maxp, lvm_used, pr)
+	-- -- The Void above Realm barrier below the Overworld:
+	-- lvm_used = set_layers(data, area, c_void         , nil, mcl_vars.mg_realm_barrier_overworld_end_max+1, mcl_vars.mg_overworld_min                  -1, minp, maxp, lvm_used, pr)
 
 
 	if mg_name ~= "singlenode" then
 		-- Bedrock
 		lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_overworld_min, mcl_vars.mg_bedrock_overworld_max, minp, maxp, lvm_used, pr)
-		lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_nether_bottom_min, mcl_vars.mg_bedrock_nether_bottom_max, minp, maxp, lvm_used, pr)
-		lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_nether_top_min, mcl_vars.mg_bedrock_nether_top_max, minp, maxp, lvm_used, pr)
+		-- lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_nether_bottom_min, mcl_vars.mg_bedrock_nether_bottom_max, minp, maxp, lvm_used, pr)
+		-- lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_nether_top_min, mcl_vars.mg_bedrock_nether_top_max, minp, maxp, lvm_used, pr)
 
 		-- Flat Nether
-		if mg_name == "flat" then
-			lvm_used = set_layers(data, area, c_air, nil, mcl_vars.mg_flat_nether_floor, mcl_vars.mg_flat_nether_ceiling, minp, maxp, lvm_used, pr)
-		end
+		-- if mg_name == "flat" then
+		-- 	lvm_used = set_layers(data, area, c_air, nil, mcl_vars.mg_flat_nether_floor, mcl_vars.mg_flat_nether_ceiling, minp, maxp, lvm_used, pr)
+		-- end
 
-		-- Big lava seas by replacing air below a certain height
+		-- -- Big lava seas by replacing air below a certain height
 		if mcl_vars.mg_lava then
 			lvm_used = set_layers(data, area, c_lava, c_air, mcl_vars.mg_overworld_min, mcl_vars.mg_lava_overworld_max, minp, maxp, lvm_used, pr)
-			lvm_used = set_layers(data, area, c_nether_lava, c_air, mcl_vars.mg_nether_min, mcl_vars.mg_lava_nether_max, minp, maxp, lvm_used, pr)
+		-- 	lvm_used = set_layers(data, area, c_nether_lava, c_air, mcl_vars.mg_nether_min, mcl_vars.mg_lava_nether_max, minp, maxp, lvm_used, pr)
 		end
 	end
 	local deco = false
 	local ores = false
-	if minp.y >  mcl_vars.mg_nether_deco_max - 64 and maxp.y <  mcl_vars.mg_nether_max + 128 then
-		deco = {min=mcl_vars.mg_nether_deco_max,max=mcl_vars.mg_nether_max}
-	end
-	if minp.y <  mcl_vars.mg_nether_min + 10 or maxp.y <  mcl_vars.mg_nether_min + 60 then
-		deco = {min=mcl_vars.mg_nether_min - 10,max=mcl_vars.mg_nether_min + 20}
-		ores = {min=mcl_vars.mg_nether_min - 10,max=mcl_vars.mg_nether_min + 20}
-	end
+	-- if minp.y >  mcl_vars.mg_nether_deco_max - 64 and maxp.y <  mcl_vars.mg_nether_max + 128 then
+	-- 	deco = {min=mcl_vars.mg_nether_deco_max,max=mcl_vars.mg_nether_max}
+	-- end
+	-- if minp.y <  mcl_vars.mg_nether_min + 10 or maxp.y <  mcl_vars.mg_nether_min + 60 then
+	-- 	deco = {min=mcl_vars.mg_nether_min - 10,max=mcl_vars.mg_nether_min + 20}
+	-- 	ores = {min=mcl_vars.mg_nether_min - 10,max=mcl_vars.mg_nether_min + 20}
+	-- end
 	return lvm_used, lvm_used, deco, ores
 end
 
@@ -365,29 +365,29 @@ end
 
 
 -- End block fixes:
-local function end_basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
-	if maxp.y < mcl_vars.mg_end_min or minp.y > mcl_vars.mg_end_max then return end
-	local biomemap --ymin, ymax
-	local lvm_used = false
-	local pr = PseudoRandom(blockseed)
-	local nodes
-	if mg_name ~= "v6" then
-		nodes = minetest.find_nodes_in_area(emin, emax, {"mcl_core:water_source"})
-		if #nodes > 0 then
-			lvm_used = true
-			for _,n in pairs(nodes) do
-				data[area:index(n.x, n.y, n.z)] = c_air
-			end
-		end
-	end
-	return true, false
-end
+-- local function end_basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
+-- 	if maxp.y < mcl_vars.mg_end_min or minp.y > mcl_vars.mg_end_max then return end
+-- 	local biomemap --ymin, ymax
+-- 	local lvm_used = false
+-- 	local pr = PseudoRandom(blockseed)
+-- 	local nodes
+-- 	if mg_name ~= "v6" then
+-- 		nodes = minetest.find_nodes_in_area(emin, emax, {"mcl_core:water_source"})
+-- 		if #nodes > 0 then
+-- 			lvm_used = true
+-- 			for _,n in pairs(nodes) do
+-- 				data[area:index(n.x, n.y, n.z)] = c_air
+-- 			end
+-- 		end
+-- 	end
+-- 	return true, false
+-- end
 
 
 mcl_mapgen_core.register_generator("world_structure", world_structure, nil, 1, true)
-mcl_mapgen_core.register_generator("end_fixes", end_basic, function(minp,maxp)
-	if maxp.y < mcl_vars.mg_end_min or minp.y > mcl_vars.mg_end_max then return end
-end, 9999, true)
+-- mcl_mapgen_core.register_generator("end_fixes", end_basic, function(minp,maxp)
+-- 	if maxp.y < mcl_vars.mg_end_min or minp.y > mcl_vars.mg_end_max then return end
+-- end, 9999, true)
 
 if mg_name ~= "v6" and mg_name ~= "singlenode" then
 	mcl_mapgen_core.register_generator("block_fixes_grass", block_fixes_grass, nil, 9999, true)

@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Game;Simulation;
+Comment[en_US]=Monke Game
+Comment=Monke Game
+Comment[ru]=Обезьянья Игра
+Exec=GoongaMiners
+GenericName[en_US]=GoongaMiners
+GenericName=GoongaMiners
+Icon=GoongaMiners
+Keywords=sandbox;world;mining;crafting;blocks;nodes;multiplayer;roleplaying;
+MimeType=
+Name[en_US]=GoongaMiners
+Name=GoongaMiners
+Path=
+PrefersNonDefaultGPU=true
+StartupNotify=false
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

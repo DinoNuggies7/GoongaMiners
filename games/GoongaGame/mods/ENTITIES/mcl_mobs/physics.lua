@@ -483,23 +483,23 @@ function mob_class:check_for_death(cause, cmi_cause)
 					wielditem = puncher:get_wielded_item()
 				end
 			end
-			local cooked = mcl_burning.is_burning(self.object) or mcl_enchanting.has_enchantment(wielditem, "fire_aspect")
+			local cooked = mcl_burning.is_burning(self.object) or mcl_enchanting.has_enchantment(wielditem, "aflame")
 			local looting = mcl_enchanting.get_enchantment(wielditem, "looting")
 			self:item_drop(cooked, looting)
 
-			if ((not self.child) or self.type ~= "animal") and (minetest.get_us_time() - self.xp_timestamp <= math.huge) then
-				local pos = self.object:get_pos()
-				local xp_amount = math.random(self.xp_min, self.xp_max)
+			-- if ((not self.child) or self.type ~= "animal") and (minetest.get_us_time() - self.xp_timestamp <= math.huge) then
+				-- local pos = self.object:get_pos()
+				-- local xp_amount = math.random(self.xp_min, self.xp_max)
 
-				if not mcl_sculk.handle_death(pos, xp_amount) then
-					--minetest.log("Xp not thrown")
-					if minetest.is_creative_enabled("") ~= true then
-						mcl_experience.throw_xp(pos, xp_amount)
-					end
-				else
-					--minetest.log("xp thrown")
-				end
-			end
+				-- if not mcl_sculk.handle_death(pos, xp_amount) then
+				-- 	--minetest.log("Xp not thrown")
+				-- 	if minetest.is_creative_enabled("") ~= true then
+				-- 		mcl_experience.throw_xp(pos, xp_amount)
+				-- 	end
+				-- else
+				-- 	--minetest.log("xp thrown")
+				-- end
+			-- end
 		end
 
 
@@ -579,16 +579,17 @@ function mob_class:check_for_death(cause, cmi_cause)
 		local dpos = self.object:get_pos()
 		local cbox = self.collisionbox
 		local yaw = self.object:get_rotation().y
-		mcl_burning.extinguish(self.object)
-		self.object:remove()
-		mcl_mobs.death_effect(dpos, yaw, cbox, not self.instant_death)
+		-- mcl_burning.extinguish(self.object)
+		-- self.object:remove()
+		-- mcl_mobs.death_effect(dpos, yaw, cbox, not self.instant_death)
 	end
 
-	if length <= 0 then
-		kill(self)
-	else
-		minetest.after(length, kill, self)
-	end
+	kill(self)
+	-- if length <= 0 then
+	-- 	kill(self)
+	-- else
+	-- 	minetest.after(length, kill, self)
+	-- end
 
 	return true
 end

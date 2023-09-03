@@ -38,26 +38,31 @@ local function register_rock(size, name, node_box, selection_box)
 			fixed = selection_box,
 		},
 		paramtype = "light",
-		-- paramtype2 = "facedir",
-		-- param2 = 1,
-		wield_image = "mesecons_button_wield_mask.png^".."default_stone.png".."^mesecons_button_wield_mask.png^[makealpha:255,126,126",
-		inventory_image = "mesecons_button_wield_mask.png^".."default_stone.png".."^mesecons_button_wield_mask.png^[makealpha:255,126,126",
+		wield_image = "rock_"..size..".png",
+		inventory_image = "rock_"..size..".png",
 		wield_scale = { x=1, y=1, z=1},
 		is_ground_content = true,
-		walkable = true,
+		walkable = (size == "large"),
 		sunlight_propagates = true,
 		groups = {handy = 1, deco_block = 1, place_flowerlike = 1, attached_node = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
 		sounds = mcl_sounds.node_sound_stone_defaults(),
-		-- after_place_node = function(pos)
-		-- 	local node_name = minetest.get_node(pos).name
-		-- 	local rotation = math.random(0, 3)
-		-- 	minetest.set_node(pos, {name=node_name, param2=rotation})
-		-- end,
-		-- on_construct = function(pos)
-		-- 	local node_name = minetest.get_node(pos).name
-		-- 	local rotation = math.random(0, 3)
-		-- 	minetest.set_node(pos, {name=node_name, param2=rotation})
-		-- end,
+		on_dig = function(pos, node, digger)
+			if size == "small" then
+				local item = digger:get_wielded_item():get_name()
+				if item == "mcl_core:rock_medium" or item == "mcl_core:rock_large" then
+					local itemstack = ItemStack("mcl_core:cut_rock")
+					local enchantments = {
+						sharpness = math.random(100),
+						hardness = math.random(100),
+						durability = math.random(100),
+					}
+					mcl_enchanting.set_enchantments(itemstack, enchantments)
+					minetest.remove_node(pos)
+					minetest.add_item(pos, itemstack)
+				end
+			end
+			minetest.node_dig(pos, node, digger)
+		end,
 		last_resistance = 0,
 		_mcl_hardness = 0,
 	})
@@ -82,14 +87,14 @@ local select_medium = {
 }
 -- Nodebox for Large Rock
 local box_large = {
-	{0, -0.5, -0.1875, 0.25, -0.3895, 0.1875},
-	{0.125, -0.5, -0.125, 0.1875, -0.34, 0.0625},
-	{0.0625, -0.5, -0.125, 0.1875, -0.35, 0.125},
-	{0.0625, -0.4375, -0.1875, 0.1875, -0.375, 0.1875},
-	{0, -0.4375, -0.125, 0.25, -0.375, 0.125},
+	{-0.375, -0.5, -0.4375, 0.375, -0.3125, 0.1875},
+	{-0.1875, -0.3125, -0.375, 0.3125, -0.1875, 0},
+	{0.125, -0.3125, -0.4375, 0.3125, -0.25, -0.3125},
+	{0.125, -0.3125, -0.4375, 0.3125, -0.25, -0.3125},
+	{-0.25, -0.3125, -0.375, 0.25, -0.25, 0.0625},
 }
 local select_large = {
-	{0, -0.5, -0.1875, 0.25, -0.34, 0.1875},
+	{-0.375000, -0.500000, -0.437500, 0.375000, -0.187500, 0.187500},
 }
 register_rock("small", "Small", box_small, select_small)
 register_rock("medium", "Medium", box_medium, select_medium)
