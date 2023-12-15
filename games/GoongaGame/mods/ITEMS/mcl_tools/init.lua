@@ -114,7 +114,7 @@ minetest.register_tool("mcl_tools:rock_knife", {
 
 -- Rock Axe, used to cut down trees and mine some stone
 minetest.register_tool("mcl_tools:rock_axe", {
-	description = "Rock Axe",
+	description = "Rock Hatchet",
 	inventory_image = "rock_axe.png",
 	wield_image = "rock_axe.png",
 	stack_max = 1,
@@ -128,7 +128,7 @@ minetest.register_tool("mcl_tools:rock_axe", {
 	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:rock_medium",
 	_mcl_toollike_wield = true,
-	on_place = make_stripped_trunk,
+	-- on_place = make_stripped_trunk,
 	_mcl_diggroups = {
 		axey = { speed = 0.2, level = 1, uses = 15 },
 		pickaxey = { speed = 0.1, level = 1, uses = 15 }

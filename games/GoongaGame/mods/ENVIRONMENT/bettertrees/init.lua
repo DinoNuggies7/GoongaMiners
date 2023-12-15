@@ -42,7 +42,7 @@ end
 local function break_leaf(pos, node_name, decay)
 	if decay == true and bettertrees.stick then
 		minetest.swap_node(pos, {
-			name = bettertrees.stick
+			name = "bettertrees:stick"
 		})
 		minetest.check_single_for_falling(pos)
 	else
@@ -229,8 +229,8 @@ if bettertrees.stick then
 		on_dig = function(pos, node, digger)
 			local itemstack = ItemStack("mcl_core:stick")
 			local enchantments = {
-				sharpness = math.random(100),
-				hardness = math.random(100),
+				length = math.random(100),
+				-- hardness = math.random(100),
 				durability = math.random(100),
 			}
 			mcl_enchanting.set_enchantments(itemstack, enchantments)

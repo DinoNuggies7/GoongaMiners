@@ -44,7 +44,7 @@ local function register_rock(size, name, node_box, selection_box)
 		is_ground_content = true,
 		walkable = (size == "large"),
 		sunlight_propagates = true,
-		groups = {handy = 1, deco_block = 1, place_flowerlike = 1, attached_node = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
+		groups = {craftitem=1, rock=1, enchantability=1, handy = 1, deco_block = 1, place_flowerlike = 1, attached_node = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1},
 		sounds = mcl_sounds.node_sound_stone_defaults(),
 		on_dig = function(pos, node, digger)
 			if size == "small" then
@@ -53,6 +53,14 @@ local function register_rock(size, name, node_box, selection_box)
 					local itemstack = ItemStack("mcl_core:cut_rock")
 					local enchantments = {
 						sharpness = math.random(100),
+						durability = math.random(100),
+					}
+					mcl_enchanting.set_enchantments(itemstack, enchantments)
+					minetest.remove_node(pos)
+					minetest.add_item(pos, itemstack)
+				else
+					local itemstack = ItemStack("mcl_core:rock_small")
+					local enchantments = {
 						hardness = math.random(100),
 						durability = math.random(100),
 					}
@@ -60,8 +68,17 @@ local function register_rock(size, name, node_box, selection_box)
 					minetest.remove_node(pos)
 					minetest.add_item(pos, itemstack)
 				end
+			else
+				local itemstack = ItemStack("mcl_core:rock_"..size)
+				local enchantments = {
+					hardness = math.random(100),
+					durability = math.random(100),
+				}
+				mcl_enchanting.set_enchantments(itemstack, enchantments)
+				minetest.remove_node(pos)
+				minetest.add_item(pos, itemstack)
 			end
-			minetest.node_dig(pos, node, digger)
+			-- minetest.node_dig(pos, node, digger)
 		end,
 		last_resistance = 0,
 		_mcl_hardness = 0,

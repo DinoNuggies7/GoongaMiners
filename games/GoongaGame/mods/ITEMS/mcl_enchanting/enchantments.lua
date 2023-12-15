@@ -123,7 +123,7 @@ mcl_enchanting.enchantments.bouncy = {
 	on_enchant = function() end,
 	requires_tool = false,
 	treasure = false,
-	power_range_table = {{5, 61}, {25, 71}},
+	-- power_range_table = {{5, 61}, {25, 71}},
 	inv_combat_tab = false,
 	inv_tool_tab = false,
 }
@@ -143,3 +143,21 @@ function minetest.calculate_knockback(player, hitter, time_from_last_punch, tool
 	end
 	return knockback
 end
+
+--Sticks only
+mcl_enchanting.enchantments.length = {
+	name = "Length",
+	max_level = 5,
+	primary = {stick = true},
+	secondary = {},
+	disallow = {},
+	incompatible = {rock = true},
+	weight = 0,
+	description = "Length of the Stick",
+	curse = true,
+	on_enchant = function() end,
+	requires_tool = false,
+	treasure = false,
+	inv_combat_tab = false,
+	inv_tool_tab = false,
+}

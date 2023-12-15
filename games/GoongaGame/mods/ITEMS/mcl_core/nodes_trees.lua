@@ -63,8 +63,34 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 		stack_max = 1,
 		groups = {axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
-		climbable = true,
+		-- climbable = true,
 		on_rotate = on_rotate,
+		on_dig = function(pos, node, digger)
+			local falling = true
+			local i = 1
+			local j = 0
+			minetest.spawn_falling_node(pos)
+			while falling do
+				local above_node = minetest.get_node(pos + vector.new(0, i, 0))
+				if above_node.name == node.name then
+					local yaw = math.deg(digger:get_look_horizontal())
+					minetest.remove_node(pos + vector.new(0, i, 0))
+					-- East or West
+					if yaw > 45 and yaw < 135 or yaw > 225 and yaw < 315 then
+						if yaw > 45 and yaw < 135 then j = i*-1 else j = i end
+						minetest.set_node(pos + vector.new(j, i, 0), {name = node.name, param2 = 12})
+						minetest.spawn_falling_node(pos + vector.new(j, i, 0))
+					else -- North or South
+						if yaw > 135 and yaw < 225 then j = i*-1 else j = i end
+						minetest.set_node(pos + vector.new(0, i, j), {name = node.name, param2 = 4})
+						minetest.spawn_falling_node(pos + vector.new(0, i, j))
+					end
+					i = i + 1
+				else
+					falling = false
+				end
+			end
+		end,
 		_mcl_blast_resistance = 2,
 		_mcl_hardness = 2,
 		_mcl_stripped_variant = stripped_variant,
@@ -80,7 +106,7 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 		groups = {axey=1, bark=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		is_ground_content = false,
-		climbable = true,
+		-- climbable = true,
 		on_rotate = on_rotate,
 		_mcl_blast_resistance = 2,
 		_mcl_hardness = 2,

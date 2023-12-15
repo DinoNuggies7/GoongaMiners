@@ -40,21 +40,36 @@ function is_solid(node, allow_leaves)
 	return solid
 end
 
-local time = 0
-local jump_force = 7
-local longjump_force = 10
+minetest.register_on_joinplayer(function(player)
+	local meta = player:get_meta()
+	meta:set_string("time", tostring(0))
+end)
+
+local kick_time = 0
+local jump_time = 0
 local jump_press = false
 local jump_hold = false
 -- local grabbing = false
-
+local KICK_FORCE = 6
+local LONGJUMP_FORCE = 9
 minetest.register_globalstep(function(dtime)
 	for _, player in ipairs(minetest.get_connected_players()) do
 		local pos = player:get_pos()
 		local dir = player:get_look_dir()
 		local ndir = vector.normalize(vector.new(dir.x, 0, dir.z))
+		local vel = player:get_velocity()
 		local shifting = player:get_player_control().sneak
-		local node_front = minetest.get_node(pos + vector.new(dir.x, 1, dir.z))
+		local privs = minetest.get_player_privs(player:get_player_name())
+		local node_front = minetest.get_node(pos + vector.new(ndir.x, 1, ndir.z))
 		local node_stand = minetest.get_node(pos + vector.new(0, -0.4, 0))
+
+		if shifting then
+			privs.interact = nil
+			minetest.set_player_privs(player:get_player_name(), privs)
+		else
+			privs.interact = true
+			minetest.set_player_privs(player:get_player_name(), privs)
+		end
 
 		if player:get_player_control().jump and jump_hold == false then
 			jump_press = true
@@ -81,27 +96,26 @@ minetest.register_globalstep(function(dtime)
 		-- end 
 		
 		if player:get_player_control().jump then
-			if time > 1 then
+			if jump_time > 1 then
 				if shifting and is_solid(node_stand, true) then
-					player:add_velocity(vector.new(ndir.x * longjump_force, 0.5, ndir.z * longjump_force))
-					time = 0
+					player:add_velocity(vector.new(ndir.x * LONGJUMP_FORCE, 4 - vel.y, ndir.z * LONGJUMP_FORCE))
+					jump_time = 0
 				end
 			end
 		end
 
 		if jump_press then
-			if time > 0.4 then
-				if player:get_velocity().y < 0 then
+			if kick_time > 0.4 then
+				if vel.y < 1 then
 					if is_solid(node_front, false) then
-						local vel = player:get_velocity()
-						player:add_velocity(vector.new(dir.x * -jump_force - vel.x, jump_force - vel.y, dir.z * -jump_force - vel.z))
-						time = 0
-						break
+						player:add_velocity(vector.new(ndir.x * -KICK_FORCE, KICK_FORCE - vel.y, ndir.z * -KICK_FORCE))
+						kick_time = 0
 					end
 				end
 			end
 		end
+		kick_time = kick_time + dtime
+		jump_time = jump_time + dtime
 	end
-	time = time + dtime
 
 end)

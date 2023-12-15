@@ -84,7 +84,7 @@ minetest.register_globalstep(function(dtime)
 		local offhand_hud = mcl_offhand[player].hud
 		local item1 = minetest.registered_items[offhand_item1]
 		local item2 = minetest.registered_items[offhand_item2]
-		if not swapped and player:get_player_control().aux1 then
+		if not swapped and player:get_player_control().aux1 and not player:get_player_control().sneak then
 			local inventory = player:get_inventory()
 			inventory:set_stack("main", 1, itemstack2)
 			inventory:set_stack("main", 2, itemstack1)
